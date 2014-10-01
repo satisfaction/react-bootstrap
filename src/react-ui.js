@@ -32,10 +32,11 @@
         className: 'react-ui-button',
         disabled: this.props.disabled || false,
         title: this.props.title,
-        onClick: this.props.onClick || void 0
+        onClick: this.onClick || void 0
       };
 
       return dom.button(props, this.props.children);
+
     },
 
     onClick: function (event) {
@@ -47,8 +48,46 @@
 
   });
 
+  var Checkbox = React.createClass({
+
+    getInitialState: function () {
+      return { checked: this.props.checked || false };
+    },
+
+    render: function () {
+      var props = {
+        className: 'react-ui-checkbox',
+        disabled: this.props.disabled || false,
+        title: this.props.title,
+        onClick: this.onClick || void 0
+      };
+
+      if (this.state.checked === true) {
+        props.className += ' is-checked';
+      }
+
+      return dom.button(props);
+    },
+
+    onClick: function (event) {
+      event.preventDefault();
+
+      this.setState({'checked': !this.state.checked});
+
+      if (this.state.checked === false && typeof this.props.onCheck === 'function') {
+        this.props.onCheck(event);
+      }
+
+      if (this.state.checked === true && typeof this.props.onUncheck === 'function') {
+        this.props.onUncheck(event);
+      }
+    }
+
+  });
+
   return {
-    Button: Button
+    Button: Button,
+    Checkbox: Checkbox
   };
 
 }));

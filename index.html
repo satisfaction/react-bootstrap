@@ -31,19 +31,84 @@
 
   <section class="button-container"></section>
   <section class="button-disabled-container"></section>
+  <section class="checkbox-container"></section>
+  <section class="checkbox-checked-container"></section>
+  <section class="checkbox-disabled-container"></section>
+  <section class="checkbox-checked-disabled-container"></section>
 
   <script type="text/javascript" src="bower_components/react/react.js"></script>
   <script type="text/javascript" src="src/react-ui.js"></script>
 
   <script type="text/javascript">
-    
+
     var greet = function () {
       alert('Hello World');
-    }
+    };
+
+    var onCheck = function () {
+      alert('Check');
+    };
+
+    var onUncheck = function () {
+      alert('Uncheck');
+    };
 
     React.renderComponent(ReactUI.Button({ onClick: greet }, 'Hello World'), document.querySelector('.button-container'));
 
-    React.renderComponent(ReactUI.Button({ disabled: true, onClick: greet }, 'Hello World'), document.querySelector('.button-disabled-container'));
+    React.renderComponent(
+      ReactUI.Button(
+        {
+          disabled: true,
+          onClick: greet
+        },
+        'Hello World'
+      ),
+      document.querySelector('.button-disabled-container')
+    );
+
+    React.renderComponent(
+      ReactUI.Checkbox(
+        {
+          onCheck: onCheck,
+          onUncheck: onUncheck
+        }
+      ),
+      document.querySelector('.checkbox-container')
+    );
+
+    React.renderComponent(
+      ReactUI.Checkbox(
+        {
+          checked: true,
+          onCheck: onCheck,
+          onUncheck: onUncheck
+        }
+      ),
+      document.querySelector('.checkbox-checked-container')
+    );
+
+    React.renderComponent(
+      ReactUI.Checkbox(
+        {
+          disabled: true,
+          onCheck: onCheck,
+          onUncheck: onUncheck
+        }
+      ),
+      document.querySelector('.checkbox-disabled-container')
+    );
+
+    React.renderComponent(
+      ReactUI.Checkbox(
+        {
+          checked: true,
+          disabled: true,
+          onCheck: onCheck,
+          onUncheck: onUncheck
+        }
+      ),
+      document.querySelector('.checkbox-checked-disabled-container')
+    );
 
   </script>
 </body>
