@@ -29,7 +29,7 @@
     render: function () {
 
       var props = {
-        className: 'react-ui-button'
+        className: (this.props.className ? this.props.ClassName + ' ' : '') + 'react-ui-button'
       };
 
       var buttonProps = {
@@ -61,7 +61,7 @@
 
     render: function () {
       var props = {
-        className: 'react-ui-checkbox',
+        className: (this.props.className ? this.props.ClassName + ' ' : '') + 'react-ui-checkbox'
       };
 
       var checkboxProps = {
