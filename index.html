@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UI</title>
+    <style type="text/css">
+        body,
+        html {
+          font-family: Arial;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+
+          -webkit-font-smoothing: antialiased;
+          -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+          text-shadow: rgba(0,0,0,.01) 0 0 1px;
+
+          box-sizing: content-box;
+        }
+
+        section {
+          margin: 20px auto;
+          width: 600px;
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="dist/react-ui.css">
+</head>
+
+<body>
+
+  <section class="button-container"></section>
+  <section class="button-disabled-container"></section>
+
+  <script type="text/javascript" src="bower_components/react/react.js"></script>
+  <script type="text/javascript" src="src/react-ui.js"></script>
+
+  <script type="text/javascript">
+    
+    var greet = function () {
+      alert('Hello World');
+    }
+
+    React.renderComponent(ReactUI.Button({ onClick: greet }, 'Hello World'), document.querySelector('.button-container'));
+
+    React.renderComponent(ReactUI.Button({ disabled: true, onClick: greet }, 'Hello World'), document.querySelector('.button-disabled-container'));
+
+  </script>
+</body>
+
+</html>
+

@@ -1,0 +1,36 @@
+{
+  "name": "react-ui",
+  "description": "Basic Library React UI Components",
+  "url": "https://github.com/satisfaction/react-ui.git",
+  "version": "0.0.1",
+  "copyright": "Copyright (c) 2014 Get Satisfaction Inc. All rights reserved.",
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/satisfaction/react-ui.git"
+  },
+  "author": {
+    "name": "Ivan Torres",
+    "email": "mexpolk@gmail.com"
+  },
+  "contributors": [
+    { 
+      "name": "Victor Brouk",
+      "email": "vintik@gmail.com"
+    },
+    {
+      "name": "Brian Kang",
+      "email": "brianlkang@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "gulp": "^3.8.7",
+    "gulp-connect": "^2.0.6",
+    "gulp-jshint": "^1.8.4",
+    "gulp-livereload": "^2.1.1",
+    "gulp-stylus": "^1.3.0",
+    "gulp-uglify": "^1.0.1",
+    "jshint-stylish": "^0.4.0"
+  }
+}
