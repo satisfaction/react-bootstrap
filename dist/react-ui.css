@@ -23,7 +23,9 @@
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
 .react-ui-button button:not([disabled]):active,
-.react-ui-checkbox button:not([disabled]):active {
+.react-ui-checkbox button:not([disabled]):active,
+.react-ui-button button:not([disabled]):focus,
+.react-ui-checkbox button:not([disabled]):focus {
   background-image: none;
   box-shadow: rgba(0,0,0,0.05) 0px 2px 4px 0px inset;
 }
