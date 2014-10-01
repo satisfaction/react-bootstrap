@@ -42,7 +42,7 @@
   <script type="text/javascript">
 
     var greet = function () {
-      alert('Hello World');
+      alert('Click');
     };
 
     var onCheck = function () {
@@ -53,7 +53,19 @@
       alert('Uncheck');
     };
 
-    React.renderComponent(ReactUI.Button({ onClick: greet }, 'Hello World'), document.querySelector('.button-container'));
+    // <ReactUI.Button onClick={onClick}>Click Me<\/ReactUI.Button>
+
+    React.renderComponent(
+      ReactUI.Button(
+        {
+          onClick: greet
+        },
+        'Click Me'
+      ),
+      document.querySelector('.button-container')
+    );
+
+    // <ReactUI.Button onClick={onClick} disabled>Click Me<\/ReactUI.Button>
 
     React.renderComponent(
       ReactUI.Button(
@@ -61,10 +73,12 @@
           disabled: true,
           onClick: greet
         },
-        'Hello World'
+        'Click Me'
       ),
       document.querySelector('.button-disabled-container')
     );
+
+    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} />
 
     React.renderComponent(
       ReactUI.Checkbox(
@@ -75,6 +89,8 @@
       ),
       document.querySelector('.checkbox-container')
     );
+
+    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} checked />
 
     React.renderComponent(
       ReactUI.Checkbox(
@@ -87,6 +103,8 @@
       document.querySelector('.checkbox-checked-container')
     );
 
+    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} disabled />
+
     React.renderComponent(
       ReactUI.Checkbox(
         {
@@ -97,6 +115,8 @@
       ),
       document.querySelector('.checkbox-disabled-container')
     );
+
+    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} checked disabled />
 
     React.renderComponent(
       ReactUI.Checkbox(
