@@ -4,24 +4,34 @@ $white=#fff
 $bg-color=$gray
 $border-color=#b3b3b3
 $color=#333
+$shadow-color=#333
+
+.react-ui *
+  font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size 14px
 
 .react-ui-button,
-.react-ui-checkbox
+.react-ui-checkbox,
+.react-ui-select,
+.react-ui-text-input
   display inline-block
   box-sizing: border-box
+  font-size 14px
+
+  button,
+  input[type=text]
+    outline-style none
+    border 1px solid $border-color
+    border-radius 2px
+    color $color
+    font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
+    margin 0
+    padding 0
 
   button
     background-color #f5f5f5
     background-image linear-gradient(#fff, #e6e6e6)
-    border 1px solid $border-color
-    border-radius 2px
-    color $color
     cursor pointer
-    font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
-    line-height 20px
-    margin 0
-    outline-style none
-    padding 0
 
     &:not([disabled])
 
@@ -39,10 +49,13 @@ $color=#333
       background-image none
       opacity 0.6
 
+  input[type=text]
+    line-height 30px
+    padding 0 5px
+
 .react-ui-button
   button
-    font-size 14px
-    padding 12px
+    padding 10px
 
 .react-ui-checkbox
   width 20px
@@ -57,5 +70,51 @@ $color=#333
     width 20px
 
     &.is-checked:after
-      content '\2713';
+      content '\2713'
+
+.react-ui-select
+  position relative
+
+  &.react-ui-select-is-collapsed ul
+    display none
+
+  *
+    cursor pointer
+
+  .react-ui-select-caret
+    height 30px
+    line-height 30px
+    width 15px
+
+    position absolute
+    right 0
+    top 0
+
+    &:after
+      content '\25BE'
+
+  ul
+    background-color white
+    border 1px solid $border-color
+    list-style none
+    margin 0
+    padding 0
+    width 100%
+
+    position absolute
+    top 30px
+
+
+    li
+      border-bottom 1px solid $border-color
+      padding 5px
+
+      &:last-child
+        border-bottom none
+
+      &.react-ui-select-option-is-selected
+        font-weight bold
+
+
+
 

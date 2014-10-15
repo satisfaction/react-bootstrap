@@ -1,43 +1,74 @@
+.react-ui * {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
 .react-ui-button,
-.react-ui-checkbox {
+.react-ui-checkbox,
+.react-ui-select,
+.react-ui-text-input {
   display: inline-block;
   box-sizing: border-box;
+  font-size: 14px;
 }
 .react-ui-button button,
-.react-ui-checkbox button {
-  background-color: #f5f5f5;
-  background-image: linear-gradient(#fff, #e6e6e6);
+.react-ui-checkbox button,
+.react-ui-select button,
+.react-ui-text-input button,
+.react-ui-button input[type=text],
+.react-ui-checkbox input[type=text],
+.react-ui-select input[type=text],
+.react-ui-text-input input[type=text] {
+  outline-style: none;
   border: 1px solid #b3b3b3;
   border-radius: 2px;
   color: #333;
-  cursor: pointer;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 20px;
   margin: 0;
-  outline-style: none;
   padding: 0;
 }
+.react-ui-button button,
+.react-ui-checkbox button,
+.react-ui-select button,
+.react-ui-text-input button {
+  background-color: #f5f5f5;
+  background-image: linear-gradient(#fff, #e6e6e6);
+  cursor: pointer;
+}
 .react-ui-button button:not([disabled]):hover,
-.react-ui-checkbox button:not([disabled]):hover {
+.react-ui-checkbox button:not([disabled]):hover,
+.react-ui-select button:not([disabled]):hover,
+.react-ui-text-input button:not([disabled]):hover {
   background-color: #e6e6e6;
   background-image: linear-gradient(#f3f3f3, #e6e6e6);
 }
 .react-ui-button button:not([disabled]):active,
 .react-ui-checkbox button:not([disabled]):active,
+.react-ui-select button:not([disabled]):active,
+.react-ui-text-input button:not([disabled]):active,
 .react-ui-button button:not([disabled]):focus,
-.react-ui-checkbox button:not([disabled]):focus {
+.react-ui-checkbox button:not([disabled]):focus,
+.react-ui-select button:not([disabled]):focus,
+.react-ui-text-input button:not([disabled]):focus {
   background-image: none;
   box-shadow: rgba(0,0,0,0.05) 0px 2px 4px 0px inset;
 }
 .react-ui-button button[disabled],
-.react-ui-checkbox button[disabled] {
+.react-ui-checkbox button[disabled],
+.react-ui-select button[disabled],
+.react-ui-text-input button[disabled] {
   background-color: #e6e6e6;
   background-image: none;
   opacity: 0.6;
 }
+.react-ui-button input[type=text],
+.react-ui-checkbox input[type=text],
+.react-ui-select input[type=text],
+.react-ui-text-input input[type=text] {
+  line-height: 30px;
+  padding: 0 5px;
+}
 .react-ui-button button {
-  font-size: 14px;
-  padding: 12px;
+  padding: 10px;
 }
 .react-ui-checkbox {
   width: 20px;
@@ -53,4 +84,44 @@
 }
 .react-ui-checkbox button.is-checked:after {
   content: '\2713';
+}
+.react-ui-select {
+  position: relative;
+}
+.react-ui-select.react-ui-select-is-collapsed ul {
+  display: none;
+}
+.react-ui-select * {
+  cursor: pointer;
+}
+.react-ui-select .react-ui-select-caret {
+  height: 30px;
+  line-height: 30px;
+  width: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.react-ui-select .react-ui-select-caret:after {
+  content: '\25BE';
+}
+.react-ui-select ul {
+  background-color: #fff;
+  border: 1px solid #b3b3b3;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  top: 30px;
+}
+.react-ui-select ul li {
+  border-bottom: 1px solid #b3b3b3;
+  padding: 5px;
+}
+.react-ui-select ul li:last-child {
+  border-bottom: none;
+}
+.react-ui-select ul li.react-ui-select-option-is-selected {
+  font-weight: bold;
 }
