@@ -1,14 +1,18 @@
 $gray=#f5f5f5
+$gray-dark=#e6e6e6
+$red=#CA0D0D
 $white=#fff
 
 $bg-color=$gray
-$border-color=#b3b3b3
+$bg-color-disabled=#f8f8f8
+$border-color=#B3B3B3
 $color=#333
 $shadow-color=#333
 
 .react-ui *
   font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
-  font-size 14px
+  font-size 12px
+  overflow: hidden;
 
 .react-ui-button,
 .react-ui-checkbox,
@@ -16,7 +20,6 @@ $shadow-color=#333
 .react-ui-text-input
   display inline-block
   box-sizing: border-box
-  font-size 14px
 
   button,
   input[type=text]
@@ -28,30 +31,25 @@ $shadow-color=#333
     margin 0
     padding 0
 
-  button
+  button,
     background-color #f5f5f5
-    background-image linear-gradient(#fff, #e6e6e6)
+    background-image linear-gradient($white, $gray-dark)
     cursor pointer
 
     &:not([disabled])
 
       &:hover
-        background-color #e6e6e6
-        background-image linear-gradient(#f3f3f3, #e6e6e6)
+        background-color $gray-dark
+        background-image linear-gradient(#f3f3f3, $gray-dark)
 
-      &:active,
-      &:focus
+      &:active
         background-image none
         box-shadow rgba(0,0,0,0.05) 0px 2px 4px 0px inset
 
     &[disabled]
-      background-color #e6e6e6
+      background-color $bg-color-disabled
       background-image none
       opacity 0.6
-
-  input[type=text]
-    line-height 30px
-    padding 0 5px
 
 .react-ui-button
   button
@@ -60,17 +58,21 @@ $shadow-color=#333
 .react-ui-checkbox
   width 20px
 
+  &.react-ui-is-checked button:after
+    content '\2713'
+
   button
     display inline-block
-    font-size 13px
     height 20px
+    line-height 20px
     overflow hidden
     padding 0
     text-align center
     width 20px
 
-    &.is-checked:after
-      content '\2713'
+    &:after
+      content '\00a0'
+
 
 .react-ui-select
   position relative
@@ -114,6 +116,65 @@ $shadow-color=#333
 
       &.react-ui-select-option-is-selected
         font-weight bold
+
+
+.react-ui-text-input
+
+  input[type=text]
+    background-color $white
+    background-image linear-gradient(#f9f9f9, $white)
+    line-height 30px
+    padding 0 5px
+
+    &[disabled]
+      background-color $bg-color-disabled
+      background-image none
+
+  &.react-ui-is-invalid input[type=text]
+    border 1px solid $red
+
+.react-ui-radio-button
+
+  .react-ui-radio-button-option
+    cursor pointer
+    list-style none
+    padding 5px 0
+
+    &.react-ui-is-selected
+
+      .react-ui-radio-button-button:after
+        content '\2022'
+
+      .react-ui-radio-button-text
+        font-weight bold
+
+
+  .react-ui-radio-button-button
+    border 1px solid $border-color
+    border-radius 50%
+    display inline-block
+    height 10px
+    line-height 0
+    margin-bottom -1px
+    margin-right 5px
+    overflow hidden
+    position relative
+    width 10px
+
+    &:after
+      content '\00a0'
+      display block
+      line-height 5px
+      position relative
+      top 50%
+      left 50%
+      margin-left -3px
+      margin-top -2.5px
+
+  .react-ui-radio-button-text
+    // TODO
+
+
 
 
 

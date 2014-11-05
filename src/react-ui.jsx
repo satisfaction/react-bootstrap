@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['react'], factory);
@@ -11,18 +10,18 @@
 
   'use strict';
 
-  var Button = React.createClass({displayName: 'Button',
+  var Button = React.createClass({
 
     render: function () {
       var className = (this.props.className ? this.props.className + ' ' : '') +
         'react-ui react-ui-button';
 
       return (
-        React.DOM.div({className: className}, 
-          React.DOM.button({title: this.props.title, onClick: this.onClick, disabled: this.props.disabled}, 
-            this.props.children
-          )
-        )
+        <div className={className}>
+          <button title={this.props.title} onClick={this.onClick} disabled={this.props.disabled}>
+            {this.props.children}
+          </button>
+        </div>
       );
     },
 
@@ -35,7 +34,7 @@
 
   });
 
-  var Checkbox = React.createClass({displayName: 'Checkbox',
+  var Checkbox = React.createClass({
 
     getInitialState: function () {
       return { checked: this.props.checked || false };
@@ -50,11 +49,11 @@
       }
 
       return (
-        React.DOM.div({className: className}, 
-          React.DOM.button({title: this.props.title, 
-            onClick: this.onClick, 
-            disabled: this.props.disabled})
-        )
+        <div className={className}>
+          <button title={this.props.title}
+            onClick={this.onClick}
+            disabled={this.props.disabled} />
+        </div>
       );
     },
 
@@ -76,7 +75,7 @@
 
   });
 
-  var Select = React.createClass({displayName: 'Select',
+  var Select = React.createClass({
 
     getInitialState: function () {
       return {
@@ -94,16 +93,16 @@
       }
 
       return (
-        React.DOM.div({className: className}, 
-          React.DOM.div({onClick: this.onClick}, 
-            React.DOM.label(null, this.getLabel()), 
-            React.DOM.span(null), 
-            React.DOM.input({type: "text", onKeyPress: this.onKeyPress})
-          ), 
-          React.DOM.ul(null, 
-            this.renderOptions()
-          )
-        )
+        <div className={className}>
+          <div onClick={this.onClick}>
+            <label>{this.getLabel()}</label>
+            <span></span>
+            <input type="text" onKeyPress={this.onKeyPress} />
+          </div>
+          <ul>
+            {this.renderOptions()}
+          </ul>
+        </div>
       );
     },
 
@@ -145,14 +144,14 @@
         }.bind(this);
 
         return (
-          React.DOM.li({key: i, className: className, onClick: onClick}, option.text)
+          <li key={i} className={className} onClick={onClick}>{option.text}</li>
         );
       }.bind(this));
     }
 
   });
 
-  var RadioButton = React.createClass({displayName: 'RadioButton',
+  var RadioButton = React.createClass({
 
     getInitialState: function () {
       return {
@@ -165,9 +164,9 @@
         'react-ui react-ui-radio-button';
 
       return (
-        React.DOM.div({className: className}, 
-          this.renderOptions()
-        )
+        <div className={className}>
+          {this.renderOptions()}
+        </div>
       );
     },
 
@@ -192,17 +191,17 @@
         }.bind(this);
 
         return (
-          React.DOM.li({key: i, className: className, onClick: onClick}, 
-            React.DOM.div({className: "react-ui-radio-button-button"}), 
-            React.DOM.span({className: "react-ui-radio-button-text"}, option.text)
-          )
+          <li key={i} className={className} onClick={onClick}>
+            <div className='react-ui-radio-button-button'></div>
+            <span className='react-ui-radio-button-text'>{option.text}</span>
+          </li>
         );
       }.bind(this));
     }
 
   });
 
-  var TextInput = React.createClass({displayName: 'TextInput',
+  var TextInput = React.createClass({
 
     getInitialState: function () {
       return {
@@ -221,15 +220,15 @@
       }
 
       return (
-        React.DOM.div({className: className}, 
-          React.DOM.input({type: "text", 
-            title: this.props.title, 
-            placeholder: this.props.placeholder, 
-            onKeyUp: this.props.onKeyUp, 
-            onChange: this.onChange, 
-            disabled: this.props.disabled, 
-            value: this.state.value})
-        )
+        <div className={className}>
+          <input type="text"
+            title={this.props.title}
+            placeholder={this.props.placeholder}
+            onKeyUp={this.props.onKeyUp}
+            onChange={this.onChange}
+            disabled={this.props.disabled}
+            value={this.state.value} />
+        </div>
       );
     },
 

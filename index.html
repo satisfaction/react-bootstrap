@@ -3,10 +3,15 @@
 <head>
     <title>UI</title>
     <style type="text/css">
+
         body,
         html {
+          background-color: #f9f9f9;
+          color: #484848;
           font-family: Arial;
+          font-size: 12px;
           height: 100%;
+          line-height: 1.1em;
           margin: 0;
           padding: 0;
           width: 100%;
@@ -20,157 +25,269 @@
 
         section {
           margin: 20px auto;
-          width: 600px;
+          width: 650px;
+        }
+
+        pre,
+        .demo {
+          color: #637c84;
+          background-color: #f8f5ec;
+          border: 1px solid #f1ede4;
+          border-radius: 3px;
+          padding: 20px;
+        }
+
+        #button1 .demo div,
+        #checkbox1 .demo div,
+        #text-input1 .demo div {
+          display: inline-block;
+          line-height: 20px;
+        }
+
+        #button1-message,
+        #checkbox1-message,
+        #text-input-message {
+          color: #666;
         }
 
     </style>
+
     <link rel="stylesheet" type="text/css" href="dist/react-ui.css">
 </head>
 
 <body>
 
-  <section class="button-container"></section>
-  <section class="button-disabled-container"></section>
-  <section class="checkbox-container"></section>
-  <section class="checkbox-checked-container"></section>
-  <section class="checkbox-disabled-container"></section>
-  <section class="checkbox-checked-disabled-container"></section>
-  <section class="text-input-container"></section>
-  <section class="select-container"></section>
+
+  <!-- Button -->
+
+
+  <section id="button1" class="sample">
+    <h2>Button</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+var buttonClick = function() {
+  document.getElementById('button1-message').innerHTML = 'You clicked me!';
+};
+
+&lt;ReactUI.Button onClick={buttonClick}&gt;
+  Click Me
+&lt;/ReactUI.Button&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="button1-container"></div>
+        <div id="button1-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <!-- Button (Disabled) -->
+
+
+  <section id="button2" class="sample">
+    <h2>Button (Disabled)</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+&lt;ReactUI.Button disabled&gt;
+  Click Me
+&lt;/ReactUI.Button&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="button2-container"></div>
+        <div id="button2-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <!-- Checkbox -->
+
+
+  <section id="checkbox1" class="sample">
+    <h2>Checkbox</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+function onCheck() {
+  document.getElementById('checkbox1-message').innerHTML = 'Check!';
+}
+
+function onUncheck() {
+  document.getElementById('checkbox1-message').innerHTML = 'Uncheck!';
+}
+
+&lt;ReactUI.Checkbox  onCheck={onCheck} onUncheck={onUncheck} /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="checkbox1-container"></div>
+        <div id="checkbox1-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <section id="checkbox2" class="sample">
+    <h2>Checkbox (Disabled)</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+&lt;div&gt;
+  &lt;ReactUI.Checkbox disabled/&gt;
+  &lt;ReactUI.Checkbox checked disabled/&gt;
+&lt;/div&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="checkbox2-container"></div>
+        <div id="checkbox2-message"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Radio Button -->
+
+  <section id="radio-button1" class="sample">
+    <h2>Radio Button</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+var options = [
+  { value: 1, text: 'Option 1'},
+  { value: 2, text: 'Option 2'},
+  { value: 3, text: 'Option 3'}
+];
+
+&lt;ReactUI.RadioButton options={options} /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="radio-button1-container"></div>
+        <div id="radio-button1-message"></div>
+      </div>
+    </section>
+  </section>
+  <!-- Text Input -->
+
+
+  <section id="text-input1" class="sample">
+    <h2>TextInput</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+function onChange(event, state, props) {
+  document.getElementById('text-input1-message').innerHTML = state.value;
+}
+
+&lt;ReactUI.TextInput onChange={onChange} placeholder="Type here" /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="text-input1-container"></div>
+        <div id="text-input1-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <section id="text-input2" class="sample">
+    <h2>TextInput (With Value)</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+&lt;ReactUI.TextInput value="I have a value" /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="text-input2-container"></div>
+        <div id="text-input2-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <section id="text-input3" class="sample">
+    <h2>TextInput (Disabled)</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+&lt;ReactUI.TextInput placeholder="You can't type here" disabled /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="text-input3-container"></div>
+        <div id="text-input3-message"></div>
+      </div>
+    </section>
+  </section>
+
+
+  <section id="text-input4" class="sample">
+    <h2>TextInput (Validation)</h2>
+
+    <section class="intro">
+      <h4>Code</h4>
+
+<pre>
+
+function validateTextInput(state) {
+  if (!/^^(?:\(\d+\))?\s?[\d\-]+$/.test(state.value)) {
+    return 'Invalid phone number';
+  }
+}
+
+&lt;ReactUI.TextInput placeholder="Phone Number" validate={validateTextInput} /&gt;
+</pre>
+
+      <h4>Live Example</h4>
+
+      <div class="demo">
+        <div id="text-input4-container"></div>
+        <div id="text-input4-message"></div>
+      </div>
+    </section>
+  </section>
 
   <script type="text/javascript" src="bower_components/react/react.js"></script>
-  <script type="text/javascript" src="src/react-ui.js"></script>
+  <script type="text/javascript" src="dist/react-ui.js"></script>
+  <script type="text/javascript" src="dist/react-ui-examples.js"></script>
 
-  <script type="text/javascript">
-
-    var greet = function () {
-      console.log('click');
-    };
-
-    var onCheck = function () {
-      console.log('check');
-    };
-
-    var onUncheck = function () {
-      console.log('uncheck');
-    };
-
-    var onChange = function () {
-      console.log('change');
-    }
-
-    var onKeyUp = function () {
-      console.log('keyup');
-    }
-
-    // <ReactUI.Button onClick={onClick}>Click Me<\/ReactUI.Button>
-
-    React.renderComponent(
-      ReactUI.Button(
-        {
-          onClick: greet
-        },
-        'Click Me'
-      ),
-      document.querySelector('.button-container')
-    );
-
-    // <ReactUI.Button onClick={onClick} disabled>Click Me<\/ReactUI.Button>
-
-    React.renderComponent(
-      ReactUI.Button(
-        {
-          disabled: true,
-          onClick: greet
-        },
-        'Click Me'
-      ),
-      document.querySelector('.button-disabled-container')
-    );
-
-    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} />
-
-    React.renderComponent(
-      ReactUI.Checkbox(
-        {
-          onCheck: onCheck,
-          onUncheck: onUncheck
-        }
-      ),
-      document.querySelector('.checkbox-container')
-    );
-
-    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} checked />
-
-    React.renderComponent(
-      ReactUI.Checkbox(
-        {
-          checked: true,
-          onCheck: onCheck,
-          onUncheck: onUncheck
-        }
-      ),
-      document.querySelector('.checkbox-checked-container')
-    );
-
-    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} disabled />
-
-    React.renderComponent(
-      ReactUI.Checkbox(
-        {
-          disabled: true,
-          onCheck: onCheck,
-          onUncheck: onUncheck
-        }
-      ),
-      document.querySelector('.checkbox-disabled-container')
-    );
-
-    // <ReactUI.Checkbox onCheck={onCheck} onUncheck={onUncheck} checked disabled />
-
-    React.renderComponent(
-      ReactUI.Checkbox(
-        {
-          checked: true,
-          disabled: true,
-          onCheck: onCheck,
-          onUncheck: onUncheck
-        }
-      ),
-      document.querySelector('.checkbox-checked-disabled-container')
-    );
-
-    // <ReactUI.TextInput onChange={onChange} />
-
-    React.renderComponent(
-      ReactUI.TextInput(
-        {
-          onChange: onChange,
-          onKeyUp: onKeyUp
-        }
-      ),
-      document.querySelector('.text-input-container')
-    );
-
-    // <ReactUI.Select>
-    //  <ReactUI.Option>Option 1<\/ReactUI.Option>
-    //  <ReactUI.Option>Option 2<\/ReactUI.Option>
-    // <\/ReactUI.Seelct>
-
-    React.renderComponent(
-      ReactUI.Select({
-        options: [{
-          value: 1,
-          label: 'Option 1',
-          selected: true
-        },{
-          value: 2,
-          label: 'Option 2'
-        }]
-      }),
-      document.querySelector('.select-container')
-    );
-  </script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 var connect = require('gulp-connect'),
     gulp = require('gulp'),
     jshint = require('gulp-jshint'),
+    react = require('gulp-react'),
     stylus = require('gulp-stylus'),
     uglify = require('gulp-uglify');
 
@@ -10,10 +11,8 @@ gulp.task('assets', function() {
     .pipe(stylus())
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
-  gulp.src('src/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(uglify())
+  gulp.src('src/*.jsx')
+    .pipe(react())
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
 });
