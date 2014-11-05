@@ -36,15 +36,11 @@
 
   var Checkbox = React.createClass({
 
-    getInitialState: function () {
-      return { checked: this.props.checked || false };
-    },
-
     render: function () {
       var className = (this.props.className ? this.props.ClassName + ' ' : '') +
         'react-ui react-ui-checkbox';
 
-      if (this.state.checked === true) {
+      if (this.props.checked === true) {
         className += ' react-ui-is-checked';
       }
 
@@ -58,16 +54,14 @@
     },
 
     onClick: function (event) {
-      this.setState({
-        'checked': !this.state.checked
-      });
+      this.props.checked = !this.props.checked
 
-      if (this.state.checked === false &&
+      if (this.props.checked === false &&
         typeof this.props.onCheck === 'function') {
         this.props.onCheck(event);
       }
 
-      if (this.state.checked === true &&
+      if (this.props.checked === true &&
         typeof this.props.onUncheck === 'function') {
         this.props.onUncheck(event);
       }
