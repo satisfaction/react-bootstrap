@@ -148,12 +148,6 @@
 
   var RadioButton = React.createClass({displayName: 'RadioButton',
 
-    getInitialState: function () {
-      return {
-        value: this.props.value || this.props.options[0].value
-      };
-    },
-
     render: function () {
       var className = (this.props.className ? this.props.className + ' ' : '') +
         'react-ui react-ui-radio-button';
@@ -166,11 +160,11 @@
     },
 
     onOptionClick: function (value) {
-      this.setState({ value: value });
+      this.props.value = value;
 
       if (this.props.onChange) {
         setTimeout(function () {
-          this.props.onChange(this.state.value);
+          this.props.onChange(this.props.value);
         }.bind(this));
       }
     },
@@ -179,7 +173,7 @@
       return this.props.options.map(function (option, i) {
 
         var className = 'react-ui-radio-button-option'
-        className += (option.value === this.state.value ? ' react-ui-is-selected' : '');
+        className += (option.value === this.props.value ? ' react-ui-is-selected' : '');
 
         var onClick = function () {
           this.onOptionClick(option.value);
