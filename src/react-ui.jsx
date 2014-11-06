@@ -65,6 +65,8 @@
         typeof this.props.onUncheck === 'function') {
         this.props.onUncheck(event);
       }
+
+      this.forceUpdate();
     }
 
   });
@@ -166,6 +168,8 @@
           this.props.onChange(this.props.value);
         }.bind(this));
       }
+
+      this.forceUpdate();
     },
 
     renderOptions: function () {
@@ -191,12 +195,6 @@
 
   var TextInput = React.createClass({
 
-    getInitialState: function () {
-      return {
-        value: this.props.value || ''
-      };
-    },
-
     render: function () {
       var className = (this.props.className ? this.props.ClassName + ' ' : '') +
         'react-ui react-ui-text-input';
@@ -215,28 +213,22 @@
             onKeyUp={this.props.onKeyUp}
             onChange={this.onChange}
             disabled={this.props.disabled}
-            value={this.state.value} />
+            value={this.props.value} />
         </div>
       );
     },
 
     onChange: function (event) {
-      this.setState({
-        value: this.getDOMNode().querySelector('input').value
-      });
-
+      this.props.value = this.getDOMNode().querySelector('input').value
       if (this.props.onChange) {
-        // Wait for the `state` to change
-        // TODO: Is this the best way to do this?
-        setTimeout(function () {
-          this.props.onChange(event, this.state, this.props);
-        }.bind(this), 1);
+        this.props.onChange(event, this.props.value);
       }
+      this.forceUpdate()
     },
 
     validate: function () {
-      if (this.state.value && typeof this.props.validate === 'function') {
-        return this.props.validate(this.state);
+      if (this.props.value && typeof this.props.validate === 'function') {
+        return this.props.validate(this.value);
       }
     }
 

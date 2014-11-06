@@ -60,8 +60,8 @@ React.renderComponent(
 // TextInput
 
 
-function onChange(event, state, props) {
-  document.getElementById('text-input1-message').innerHTML = state.value;
+function onChange(event, value) {
+  document.getElementById('text-input1-message').innerHTML = value;
 }
 
 React.renderComponent(
@@ -79,8 +79,8 @@ React.renderComponent(
   document.getElementById('text-input3-container')
 );
 
-function validateTextInput(state) {
-  if (!/^^(?:\(\d+\))?\s?[\d\-]+$/.test(state.value)) {
+function validateTextInput(value) {
+  if (!/^^(?:\(\d+\))?\s?[\d\-]+$/.test(value)) {
     return 'Invalid phone number';
   }
 }
