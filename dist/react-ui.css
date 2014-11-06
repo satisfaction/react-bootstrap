@@ -1,8 +1,3 @@
-.react-ui * {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  overflow: hidden;
-}
 .react-ui-button,
 .react-ui-checkbox,
 .react-ui-select,
@@ -21,8 +16,7 @@
   outline-style: none;
   border: 1px solid #b3b3b3;
   border-radius: 2px;
-  color: #333;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #666;
   margin: 0;
   padding: 0;
 }
@@ -75,22 +69,13 @@
   padding: 10px;
 }
 .react-ui-checkbox {
-  width: 20px;
+  cursor: pointer;
 }
-.react-ui-checkbox.react-ui-is-checked button:after {
-  content: '\2713';
-}
-.react-ui-checkbox button {
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  overflow: hidden;
-  padding: 0;
-  text-align: center;
-  width: 20px;
-}
-.react-ui-checkbox button:after {
-  content: '\00a0';
+.react-ui-checkbox i:before {
+  color: #666;
+  font-size: 18px;
+  position: relative;
+  top: 2px;
 }
 .react-ui-select {
   position: relative;
@@ -150,31 +135,16 @@
   list-style: none;
   padding: 5px 0;
 }
-.react-ui-radio-button .react-ui-radio-button-option.react-ui-is-selected .react-ui-radio-button-button:after {
-  content: '\2022';
+.react-ui-radio-button .react-ui-radio-button-disc:before {
+  color: #666;
+  font-size: 18px;
+  position: relative;
+  top: 1px;
 }
-.react-ui-radio-button .react-ui-radio-button-option.react-ui-is-selected .react-ui-radio-button-text {
-  font-weight: bold;
-}
-.react-ui-radio-button .react-ui-radio-button-button {
-  border: 1px solid #b3b3b3;
-  border-radius: 50%;
+.react-ui-radio-button .react-ui-radio-button-disc,
+.react-ui-radio-button .react-ui-radio-button-text {
   display: inline-block;
-  height: 10px;
-  line-height: 0;
-  margin-bottom: -1px;
-  margin-right: 5px;
-  overflow: hidden;
-  position: relative;
-  width: 10px;
 }
-.react-ui-radio-button .react-ui-radio-button-button:after {
-  content: '\00a0';
-  display: block;
-  line-height: 5px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  margin-left: -3px;
-  margin-top: -2.5px;
+.react-ui-radio-button .react-ui-radio-button-text {
+  margin-left: 5px;
 }

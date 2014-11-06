@@ -30,6 +30,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.11.2"
+    "react": "~0.11.2",
+    "font-awesome": "~4.2.0"
   }
 }

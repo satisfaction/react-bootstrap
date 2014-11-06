@@ -37,16 +37,11 @@
   var Checkbox = React.createClass({displayName: 'Checkbox',
 
     render: function () {
-      var className = (this.props.className ? this.props.ClassName + ' ' : '') +
-        'react-ui react-ui-checkbox';
-
-      if (this.props.checked === true) {
-        className += ' react-ui-is-checked';
-      }
+      var className = (this.props.className ? this.props.ClassName + ' ' : '') + 'react-ui react-ui-checkbox';
 
       return (
-        React.DOM.div({className: className}, 
-          React.DOM.button({title: this.props.title, onClick: this.onClick, disabled: this.props.disabled})
+        React.DOM.div({className: className, onClick: this.onClick}, 
+          React.DOM.i({className: 'fa ' + (this.props.checked === true ? 'fa-check-square-o' : 'fa-square-o')})
         )
       );
     },
@@ -168,17 +163,17 @@
 
     renderOptions: function () {
       return this.props.options.map(function (option, i) {
+        var className, onClick;
 
-        var className = 'react-ui-radio-button-option'
-        className += (option.value === this.props.value ? ' react-ui-is-selected' : '');
+        className = 'react-ui-radio-button-option'
 
-        var onClick = function () {
+        onClick = function () {
           this.onOptionClick(option.value);
         }.bind(this);
 
         return (
           React.DOM.li({key: i, className: className, onClick: onClick}, 
-            React.DOM.div({className: "react-ui-radio-button-button"}), 
+            React.DOM.i({className: 'react-ui-radio-button-disc fa ' + (option.value === this.props.value ? 'fa-dot-circle-o' : 'fa-circle-o')}), 
             React.DOM.span({className: "react-ui-radio-button-text"}, option.text)
           )
         );

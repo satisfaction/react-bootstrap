@@ -6,13 +6,11 @@ $white=#fff
 $bg-color=$gray
 $bg-color-disabled=#f8f8f8
 $border-color=#B3B3B3
-$color=#333
+$color=#666
 $shadow-color=#333
 
-.react-ui *
-  font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
-  font-size 12px
-  overflow: hidden;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-size: 12px;
 
 .react-ui-button,
 .react-ui-checkbox,
@@ -27,7 +25,6 @@ $shadow-color=#333
     border 1px solid $border-color
     border-radius 2px
     color $color
-    font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
     margin 0
     padding 0
 
@@ -56,23 +53,13 @@ $shadow-color=#333
     padding 10px
 
 .react-ui-checkbox
-  width 20px
+  cursor pointer
 
-  &.react-ui-is-checked button:after
-    content '\2713'
-
-  button
-    display inline-block
-    height 20px
-    line-height 20px
-    overflow hidden
-    padding 0
-    text-align center
-    width 20px
-
-    &:after
-      content '\00a0'
-
+  i:before
+    color $color
+    font-size 18px
+    position relative
+    top 2px
 
 .react-ui-select
   position relative
@@ -140,39 +127,19 @@ $shadow-color=#333
     list-style none
     padding 5px 0
 
-    &.react-ui-is-selected
-
-      .react-ui-radio-button-button:after
-        content '\2022'
-
-      .react-ui-radio-button-text
-        font-weight bold
-
-
-  .react-ui-radio-button-button
-    border 1px solid $border-color
-    border-radius 50%
-    display inline-block
-    height 10px
-    line-height 0
-    margin-bottom -1px
-    margin-right 5px
-    overflow hidden
-    position relative
-    width 10px
-
-    &:after
-      content '\00a0'
-      display block
-      line-height 5px
+  .react-ui-radio-button-disc
+    &:before
+      color $color
+      font-size 18px
       position relative
-      top 50%
-      left 50%
-      margin-left -3px
-      margin-top -2.5px
+      top 1px
+
+  .react-ui-radio-button-disc,
+  .react-ui-radio-button-text
+    display inline-block
 
   .react-ui-radio-button-text
-    // TODO
+    margin-left 5px
 
 
 
