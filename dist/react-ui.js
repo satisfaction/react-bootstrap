@@ -14,8 +14,7 @@
   var Button = React.createClass({displayName: 'Button',
 
     render: function () {
-      var className = (this.props.className ? this.props.className + ' ' : '') +
-        'react-ui react-ui-button';
+      var className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-button';
 
       return (
         React.DOM.div({className: className}, 
@@ -47,27 +46,23 @@
 
       return (
         React.DOM.div({className: className}, 
-          React.DOM.button({title: this.props.title, 
-            onClick: this.onClick, 
-            disabled: this.props.disabled})
+          React.DOM.button({title: this.props.title, onClick: this.onClick, disabled: this.props.disabled})
         )
       );
     },
 
     onClick: function (event) {
-      this.props.checked = !this.props.checked
+      this.setProps({checked: !this.props.checked});
 
-      if (this.props.checked === false &&
-        typeof this.props.onCheck === 'function') {
-        this.props.onCheck(event);
-      }
+      setTimeout(function () {
+        if (this.props.checked === true && typeof this.props.onCheck === 'function') {
+          this.props.onCheck(event);
+        }
 
-      if (this.props.checked === true &&
-        typeof this.props.onUncheck === 'function') {
-        this.props.onUncheck(event);
-      }
-
-      this.forceUpdate();
+        if (this.props.checked === false && typeof this.props.onUncheck === 'function') {
+          this.props.onUncheck(event);
+        }
+      }.bind(this))
     }
 
   });
@@ -162,15 +157,13 @@
     },
 
     onOptionClick: function (value) {
-      this.props.value = value;
+      this.setProps({value: value});
 
-      if (this.props.onChange) {
+      if (typeof this.props.onChange === 'function') {
         setTimeout(function () {
           this.props.onChange(this.props.value);
         }.bind(this));
       }
-
-      this.forceUpdate();
     },
 
     renderOptions: function () {
@@ -197,10 +190,12 @@
   var TextInput = React.createClass({displayName: 'TextInput',
 
     render: function () {
-      var className = (this.props.className ? this.props.ClassName + ' ' : '') +
+      var className, errorMessage;
+
+      className = (this.props.className ? this.props.ClassName + ' ' : '') +
         'react-ui react-ui-text-input';
 
-      var errorMessage = this.validate();
+      errorMessage = this.validate();
 
       if (errorMessage) {
         className += ' react-ui-is-invalid';
@@ -220,11 +215,13 @@
     },
 
     onChange: function (event) {
-      this.props.value = this.getDOMNode().querySelector('input').value
-      if (this.props.onChange) {
-        this.props.onChange(event, this.props.value);
+      this.setProps({value: this.getDOMNode().querySelector('input').value});
+
+      if (typeof this.props.onChange === 'function') {
+        setTimeout(function () {
+          this.props.onChange(event, this.props.value);
+        }.bind(this));
       }
-      this.forceUpdate()
     },
 
     validate: function () {
