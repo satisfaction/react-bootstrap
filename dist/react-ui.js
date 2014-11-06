@@ -53,6 +53,10 @@
     },
 
     onClick: function (event) {
+      if (this.props.disabled) {
+        return;
+      }
+
       this.setState({checked: !this.state.checked});
 
       setTimeout(function () {
