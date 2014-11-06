@@ -35,25 +35,31 @@
 
   var Checkbox = React.createClass({
 
+    getInitialState: function () {
+      return {
+        checked: this.props.checked || false
+      }
+    },
+
     render: function () {
       var className = (this.props.className ? this.props.ClassName + ' ' : '') + 'react-ui react-ui-checkbox';
 
       return (
         <div className={className} onClick={this.onClick}>
-          <i className={'fa ' + (this.props.checked === true ? 'fa-check-square-o' : 'fa-square-o')} />
+          <i className={'fa ' + (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')} />
         </div>
       );
     },
 
     onClick: function (event) {
-      this.setProps({checked: !this.props.checked});
+      this.setState({checked: !this.state.checked});
 
       setTimeout(function () {
-        if (this.props.checked === true && typeof this.props.onCheck === 'function') {
+        if (this.state.checked === true && typeof this.props.onCheck === 'function') {
           this.props.onCheck(event);
         }
 
-        if (this.props.checked === false && typeof this.props.onUncheck === 'function') {
+        if (this.state.checked === false && typeof this.props.onUncheck === 'function') {
           this.props.onUncheck(event);
         }
       }.bind(this))
