@@ -43,6 +43,13 @@ React.renderComponent(
 );
 
 
+React.renderComponent(
+  ReactUI.Checkbox(null, 
+    "I have a label"
+  ),
+  document.getElementById('checkbox3-container')
+);
+
 // RadioButton
 
 var options = [

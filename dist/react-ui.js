@@ -47,12 +47,15 @@
 
       return (
         React.DOM.div({className: className, onClick: this.onClick}, 
-          React.DOM.i({className: 'fa ' + (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')})
+          React.DOM.i({className: 'fa ' + (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')}), 
+          React.DOM.span({className: "react-ui-checkbox-label"}, this.props.children)
         )
       );
     },
 
     onClick: function (event) {
+      event.preventDefalt();
+
       if (this.props.disabled) {
         return;
       }
