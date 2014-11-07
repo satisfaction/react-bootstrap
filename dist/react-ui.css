@@ -58,7 +58,7 @@
 }
 .react-ui-checkbox i:before {
   color: #666;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
   top: 2px;
 }
@@ -125,7 +125,7 @@
 }
 .react-ui-radio-button .react-ui-radio-button-disc:before {
   color: #666;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
   top: 1px;
 }

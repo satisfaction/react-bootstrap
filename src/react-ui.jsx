@@ -53,7 +53,7 @@
     },
 
     onClick: function (event) {
-      event.preventDefalt();
+      event.preventDefault();
 
       if (this.props.disabled) {
         return;
