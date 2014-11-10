@@ -43,7 +43,7 @@
     },
 
     render: function () {
-      var className = (this.props.className ? this.props.ClassName + ' ' : '') + 'react-ui react-ui-checkbox';
+      var className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-checkbox';
 
       return (
         React.DOM.div({className: className, onClick: this.onClick}, 
