@@ -43,12 +43,15 @@
     },
 
     render: function () {
-      var className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-checkbox';
+      var className, label;
+
+      className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-checkbox';
+      label = this.props.children ? React.DOM.span({className: "react-ui-checkbox-label"}, this.props.children) : '';
 
       return (
         React.DOM.div({className: className, onClick: this.onClick}, 
           React.DOM.i({className: 'fa ' + (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')}), 
-          React.DOM.span({className: "react-ui-checkbox-label"}, this.props.children)
+          label
         )
       );
     },
