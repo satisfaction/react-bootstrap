@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 // -----------------------------------------------------------------------------
 // Button
 // -----------------------------------------------------------------------------
@@ -9,15 +10,15 @@ function onButtonClick(event) {
 }
 
 React.renderComponent((
-    <div>
-      <Button>Default</Button>&nbsp;
-      <Button className="btn-primary">Primary</Button>&nbsp;
-      <Button className="btn-success">Success</Button>&nbsp;
-      <Button className="btn-info">Info</Button>&nbsp;
-      <Button className="btn-warning">Warning</Button>&nbsp;
-      <Button className="btn-danger">Danger</Button>&nbsp;
-      <Button className="btn-link">Link</Button>
-    </div>
+    React.DOM.div(null, 
+      Button(null, "Default"), " ", 
+      Button({className: "btn-primary"}, "Primary"), " ", 
+      Button({className: "btn-success"}, "Success"), " ", 
+      Button({className: "btn-info"}, "Info"), " ", 
+      Button({className: "btn-warning"}, "Warning"), " ", 
+      Button({className: "btn-danger"}, "Danger"), " ", 
+      Button({className: "btn-link"}, "Link")
+    )
   ), document.getElementById('button-options'));
 
 // Checkbox

@@ -1,319 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>UI</title>
+    <title>React.JS Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
     <style type="text/css">
+      .bs-example {
+        border: 1px solid #ddd;
+        border-radius: 4px 4px 0 0;
+        padding: 45px 15px 15px;
+        position: relative;
+      }
 
-        body,
-        html {
-          background-color: #f9f9f9;
-          color: #484848;
-          font-family: Arial;
-          font-size: 12px;
-          height: 100%;
-          line-height: 1.1em;
-          margin: 0;
-          padding: 0;
-          width: 100%;
+      .bs-example:after {
+        content: "Example";
+        font-weight: bold;
+        left: 15px;
+        position: absolute;
+        text-transform: uppercase;
+        top: 15px;
+      }
 
-          -webkit-font-smoothing: antialiased;
-          -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
-          text-shadow: rgba(0,0,0,.01) 0 0 1px;
-
-          box-sizing: content-box;
-        }
-
-        section {
-          margin: 20px auto;
-          width: 650px;
-        }
-
-        pre {
-          color: #637c84;
-        }
-
-        pre,
-        .demo {
-          background-color: #f8f5ec;
-          border: 1px solid #f1ede4;
-          border-radius: 3px;
-          padding: 20px;
-        }
-
-        #button1 .demo div,
-        #checkbox1 .demo div,
-        #text-input1 .demo div {
-          display: inline-block;
-          line-height: 20px;
-        }
-
-        #button1-message,
-        #checkbox1-message,
-        #text-input-message {
-          color: #666;
-        }
-
+      .bs-example + .highlight pre {
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+      }
     </style>
-
-    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="dist/react-ui.css">
 </head>
 
 <body>
 
+  <div class="container">
+    <!-- Button -->
 
-  <!-- Button -->
+    <section class="col-md-9">
 
+      <h2>Button</h2>
+      <h4>Options</h4>
 
-  <section id="button1" class="sample">
-    <h2>Button</h2>
+      <p>Use any of the available button classes to quickly create a styled button.</p>
 
-    <section class="intro">
-      <h4>Code</h4>
+      <div class="bs-example">
+        <div id="button-options"></div>
+      </div><div class="highlight">
+        <pre><code>
+  var {Button} = Bootstrap;
 
-<pre>
-var buttonClick = function() {
-  document.getElementById('button1-message').innerHTML = 'You clicked me!';
-};
+  &lt;Button&gt;
+    Default
+  &lt;/Button&gt;
 
-&lt;ReactUI.Button onClick={buttonClick}&gt;
-  Click Me
-&lt;/ReactUI.Button&gt;
-</pre>
+  &lt;Button className="btn-primary"&gt;
+    Primary
+  &lt;/Button&gt;
 
-      <h4>Live Example</h4>
+  &lt;Button className="btn-success"&gt;
+    Success
+  &lt;/Button&gt;
 
-      <div class="demo">
-        <div id="button1-container"></div>
-        <div id="button1-message"></div>
+  &lt;Button className="btn-info"&gt;
+    Info
+  &lt;/Button&gt;
+
+  &lt;Button className="btn-warning"&gt;
+    Warning
+  &lt;/Button&gt;
+
+  &lt;Button className="btn-danger"&gt;
+    Danger
+  &lt;/Button&gt;
+
+  &lt;Button className="btn-link"&gt;
+    Link
+  &lt;/Button&gt;
+        </code></pre>
       </div>
+
     </section>
-  </section>
-
-
-  <!-- Button (Disabled) -->
-
-
-  <section id="button2" class="sample">
-    <h2>Button (Disabled)</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-&lt;ReactUI.Button disabled&gt;
-  Click Me
-&lt;/ReactUI.Button&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="button2-container"></div>
-        <div id="button2-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <!-- Checkbox -->
-
-
-  <section id="checkbox1" class="sample">
-    <h2>Checkbox</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-function onCheck() {
-  document.getElementById('checkbox1-message').innerHTML = 'Check!';
-}
-
-function onUncheck() {
-  document.getElementById('checkbox1-message').innerHTML = 'Uncheck!';
-}
-
-&lt;ReactUI.Checkbox  onCheck={onCheck} onUncheck={onUncheck} /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="checkbox1-container"></div>
-        <div id="checkbox1-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <section id="checkbox2" class="sample">
-    <h2>Checkbox (Disabled)</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-&lt;div&gt;
-  &lt;ReactUI.Checkbox disabled/&gt;
-  &lt;ReactUI.Checkbox checked disabled/&gt;
-&lt;/div&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="checkbox2-container"></div>
-        <div id="checkbox2-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <section id="checkbox3" class="sample">
-    <h2>Checkbox With a Label</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-&lt;ReactUI.Checkbox &gt;
-  I have a label
-&lt;/ReactUI.Checkbox &gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="checkbox3-container"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <!-- Radio Button -->
-
-  <section id="radio-button1" class="sample">
-    <h2>Radio Button</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-var options = [
-  { value: 1, text: 'Option 1'},
-  { value: 2, text: 'Option 2'},
-  { value: 3, text: 'Option 3'}
-];
-
-&lt;ReactUI.RadioButton options={options} /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="radio-button1-container"></div>
-        <div id="radio-button1-message"></div>
-      </div>
-    </section>
-  </section>
-  <!-- Text Input -->
-
-
-  <section id="text-input1" class="sample">
-    <h2>TextInput</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-function onChange(event, state, props) {
-  document.getElementById('text-input1-message').innerHTML = state.value;
-}
-
-&lt;ReactUI.TextInput onChange={onChange} placeholder="Type here" /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="text-input1-container"></div>
-        <div id="text-input1-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <section id="text-input2" class="sample">
-    <h2>TextInput (With Value)</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-&lt;ReactUI.TextInput value="I have a value" /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="text-input2-container"></div>
-        <div id="text-input2-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <section id="text-input3" class="sample">
-    <h2>TextInput (Disabled)</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-&lt;ReactUI.TextInput placeholder="You can't type here" disabled /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="text-input3-container"></div>
-        <div id="text-input3-message"></div>
-      </div>
-    </section>
-  </section>
-
-
-  <section id="text-input4" class="sample">
-    <h2>TextInput (Validation)</h2>
-
-    <section class="intro">
-      <h4>Code</h4>
-
-<pre>
-
-function validateTextInput(state) {
-  if (!/^^(?:\(\d+\))?\s?[\d\-]+$/.test(state.value)) {
-    return 'Invalid phone number';
-  }
-}
-
-&lt;ReactUI.TextInput placeholder="Phone Number" validate={validateTextInput} /&gt;
-</pre>
-
-      <h4>Live Example</h4>
-
-      <div class="demo">
-        <div id="text-input4-container"></div>
-        <div id="text-input4-message"></div>
-      </div>
-    </section>
-  </section>
+  </div>
 
   <script type="text/javascript" src="bower_components/react/react.js"></script>
-  <script type="text/javascript" src="dist/react-ui.js"></script>
-  <script type="text/javascript" src="dist/react-ui-examples.js"></script>
-
+  <script type="text/javascript" src="dist/react-bootstrap.js"></script>
+  <script type="text/javascript" src="dist/react-bootstrap-examples.js"></script>
 </body>
 
 </html>
