@@ -199,6 +199,12 @@
 
   var TextInput = React.createClass({
 
+    getInitialState: function () {
+      return {
+        value: this.props.value
+      };
+    },
+
     render: function () {
       var className, errorMessage;
 
@@ -225,18 +231,18 @@
     },
 
     onChange: function (event) {
-      this.setProps({value: this.getDOMNode().querySelector('input').value});
+      this.setState({value: this.getDOMNode().querySelector('input').value});
 
       if (typeof this.props.onChange === 'function') {
         setTimeout(function () {
-          this.props.onChange(event, this.props.value);
+          this.props.onChange(event, this.state.value);
         }.bind(this));
       }
     },
 
     validate: function () {
-      if (this.props.value && typeof this.props.validate === 'function') {
-        return this.props.validate(this.value);
+      if (this.state.value && typeof this.props.validate === 'function') {
+        return this.props.validate(this.state.value);
       }
     }
 

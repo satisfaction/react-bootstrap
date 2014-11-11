@@ -87,7 +87,7 @@ React.renderComponent(
 );
 
 function validateTextInput(value) {
-  if (!/^^(?:\(\d+\))?\s?[\d\-]+$/.test(value)) {
+  if (!/^(?:\(\d+\)\s?)?[\d\-]+$/.test(value)) {
     return 'Invalid phone number';
   }
 }
