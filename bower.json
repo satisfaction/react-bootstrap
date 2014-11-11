@@ -1,5 +1,5 @@
 {
-  "name": "react-ui",
+  "name": "react-bootstrap",
   "version": "0.0.1",
   "copyright": "Copyright (c) 2014 Get Satisfaction Inc. All rights reserved.",
   "authors": [
@@ -7,20 +7,17 @@
     "Victor Brouk <vintik@gmail.com>",
     "Brian Kang <brianlkang@gmail.com>"
   ],
-  "description": "Basic Library React Components",
+  "description": "Bootstrap for React.js",
   "keywords": [
     "react",
     "react.js",
-    "ui",
-    "button",
-    "checkbox",
-    "selectbox"
+    "bootstrap"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/satisfaction/react-ui.git",
+  "homepage": "https://github.com/satisfaction/react-bootstrap.git",
   "repository": {
     "type": "git",
-    "url": "https://github.com/satisfaction/react-ui.git"
+    "url": "https://github.com/satisfaction/react-bootstrap.git"
   },
   "ignore": [
     "**/.*",
@@ -30,7 +27,6 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.11.2",
-    "font-awesome": "~4.2.0"
+    "react": "~0.11.2"
   }
 }

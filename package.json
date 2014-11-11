@@ -1,7 +1,7 @@
 {
-  "name": "react-ui",
-  "description": "Basic Library React UI Components",
-  "url": "https://github.com/satisfaction/react-ui.git",
+  "name": "react-bootstrap",
+  "description": "Bootstrap for React.js",
+  "url": "https://github.com/satisfaction/react-bootstrap.git",
   "version": "0.0.1",
   "copyright": "Copyright (c) 2014 Get Satisfaction Inc. All rights reserved.",
   "license": "MIT",
