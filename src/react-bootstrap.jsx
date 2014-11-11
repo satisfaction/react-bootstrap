@@ -17,10 +17,18 @@
   var Button = React.createClass({
 
     render: function () {
-      var className = join(['btn', this.props.className || 'btn-default']);
+      var className, type;
+
+      className = join(['btn', this.props.className || 'btn-default']);
+      type = this.props.type || 'button';
 
       return (
-        <button type="button" className={className} title={this.props.title} onClick={this.onClick} disabled={this.props.disabled}>
+        <button type={type}
+          id={this.props.id}
+          className={className}
+          title={this.props.title}
+          onClick={this.onClick}
+          disabled={this.props.disabled}>
           {this.props.children}
         </button>
       );
@@ -44,37 +52,35 @@
     },
 
     render: function () {
-      var className, label;
-
-      className = join([this.props.className, 'react-ui', 'react-ui-checkbox']);
-      label = this.props.children ? <span className='react-ui-checkbox-label'>{this.props.children}</span> : '';
-
       return (
-        <div className={className} onClick={this.onClick}>
-          <i className={join(['fa', (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')])} />
-          {label}
-        </div>
+        <label>
+          <input type="checkbox" onChange={this.onChange} />&nbsp;
+          {this.props.label || this.props.children || ''}
+        </label>
       );
     },
 
-    onClick: function (event) {
-      event.preventDefault();
-
-      if (this.props.disabled) {
-        return;
+    onChange: function (event) {
+      var checkbox = event.target;
+      if (checkbox.checked === true && typeof this.props.onCheck === 'function') {
+        this.props.onCheck(event);
       }
 
-      this.setState({checked: !this.state.checked});
+      if (checkbox.checked === false && typeof this.props.onUncheck === 'function') {
+        this.props.onUncheck(event);
+      }
+    }
 
-      setTimeout(function () {
-        if (this.state.checked === true && typeof this.props.onCheck === 'function') {
-          this.props.onCheck(event);
-        }
+  });
 
-        if (this.state.checked === false && typeof this.props.onUncheck === 'function') {
-          this.props.onUncheck(event);
-        }
-      }.bind(this))
+  var Form = React.createClass({
+
+    render: function () {
+      return (
+        <form id={this.props.id} className={this.props.className} role="form">
+          {this.props.children}
+        </form>
+      );
     }
 
   });
@@ -201,30 +207,39 @@
 
     getInitialState: function () {
       return {
+        id: this.props.id || 'text-input-' + Date.now(),
         value: this.props.value
       };
     },
 
     render: function () {
-      var className, errorMessage;
+      var className, errorMessage, type;
 
-      className = join([this.props.className, 'react-ui', 'react-ui-text-input']);
+      className = this.props.className;
+      type = this.props.type || 'text';
 
-      errorMessage = this.validate();
-
-      if (errorMessage) {
-        className += ' react-ui-is-invalid';
+      if (this.props.validate) {
+        errorMessage = this.validate();
+        if (!errorMessage) {
+          className += ' has-success'
+        } else {
+          className += ' has-error';
+        }
       }
 
       return (
         <div className={className}>
-          <input type="text"
-            title={this.props.title}
-            placeholder={this.props.placeholder}
+          {this.renderLabel()}
+          <input type={type}
+            id={this.state.id}
+            className='form-control'
             onKeyUp={this.props.onKeyUp}
             onChange={this.onChange}
+            placeholder={this.props.placeholder}
             disabled={this.props.disabled}
+            title={this.props.title}
             value={this.props.value} />
+          {this.renderHelp()}
         </div>
       );
     },
@@ -239,6 +254,16 @@
       }
     },
 
+    renderLabel: function () {
+      if (!this.props.label) return '';
+      return (<label htmlFor={this.state.id}>{this.props.label}</label>);
+    },
+
+    renderHelp: function () {
+      if (!this.props.helpBlock) return '';
+      return (<span className="help-block">{this.props.helpBlock}</span>);
+    },
+
     validate: function () {
       if (this.state.value && typeof this.props.validate === 'function') {
         return this.props.validate(this.state.value);
@@ -250,6 +275,7 @@
   return {
     Button: Button,
     Checkbox: Checkbox,
+    Form: Form,
     RadioButton: RadioButton,
     Select: Select,
     TextInput: TextInput

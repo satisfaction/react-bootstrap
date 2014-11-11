@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
     <style type="text/css">
+      input[type=checkbox] ~ span {
+        font-weight: normal;
+      }
+
       .bs-example {
         border: 1px solid #ddd;
         border-radius: 4px 4px 0 0;
@@ -33,18 +37,53 @@
 <body>
 
   <div class="container">
-    <!-- Button -->
+    <section class="col-md-9">
+
+      <h2>Forms</h2>
+
+      <h4>Basic Example</h4>
+
+      <p>
+        Individual form controls automatically receive some global styling.
+        All textual <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
+        and <code>&lt;select&gt;</code> elements with <code>.form-control</code>
+        are set to <code>width: 100%;</code> by default. Wrap labels and
+        controls in <code>.form-group</code> for optimum spacing.
+      </p>
+
+      <div id="basic-form" class="bs-example">
+      </div>
+
+      <div class="highlight">
+        <pre><code>
+  var {Form} = Bootstrap;
+
+  &lt;Form&gt;
+    &lt;TextInput type="email" label="Email address"
+      placeholder="Enter email" helpBlock="e.g. my-name@example.com" /&gt;
+    &lt;TextInput type="password" label="Password" placeholder="Password" /&gt;
+
+    &lt;Checkbox&gt;check me out!&lt;/Checkbox&gt;
+    &lt;Button type="submit"&gt;Submit&lt;/Button&gt;
+  &lt;/Form&gt;
+        </code></pre>
+      </div>
+
+    </section>
+
+    <!-- Buttons -->
 
     <section class="col-md-9">
 
-      <h2>Button</h2>
+      <h2>Buttons</h2>
       <h4>Options</h4>
 
       <p>Use any of the available button classes to quickly create a styled button.</p>
 
-      <div class="bs-example">
-        <div id="button-options"></div>
-      </div><div class="highlight">
+      <div id="button-options" class="bs-example">
+      </div>
+
+      <div class="highlight">
         <pre><code>
   var {Button} = Bootstrap;
 
