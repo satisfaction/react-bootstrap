@@ -11,10 +11,14 @@
 
   'use strict';
 
+  var fmtClass = function () {
+    return arguments[0].join(' ').trim();
+  };
+
   var Button = React.createClass({displayName: 'Button',
 
     render: function () {
-      var className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-button';
+      var className = fmtClass([this.props.className, 'react-ui', 'react-ui-button']);
 
       return (
         React.DOM.div({className: className}, 
@@ -45,12 +49,12 @@
     render: function () {
       var className, label;
 
-      className = (this.props.className ? this.props.className + ' ' : '') + 'react-ui react-ui-checkbox';
+      className = fmtClass([this.props.className, 'react-ui', 'react-ui-checkbox']);
       label = this.props.children ? React.DOM.span({className: "react-ui-checkbox-label"}, this.props.children) : '';
 
       return (
         React.DOM.div({className: className, onClick: this.onClick}, 
-          React.DOM.i({className: 'fa ' + (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')}), 
+          React.DOM.i({className: fmtClass(['fa', (this.state.checked === true ? 'fa-check-square-o' : 'fa-square-o')])}), 
           label
         )
       );
@@ -88,8 +92,7 @@
     },
 
     render: function () {
-      var className = (this.props.className ? this.props.className + ' ' : '') +
-        'react-ui react-ui-select';
+      var className = fmtClass([this.props.className, 'react-ui', 'react-ui-select']);
 
       if (this.state.collapsed) {
         className += ' react-ui-is-collapsed';
@@ -157,8 +160,7 @@
   var RadioButton = React.createClass({displayName: 'RadioButton',
 
     render: function () {
-      var className = (this.props.className ? this.props.className + ' ' : '') +
-        'react-ui react-ui-radio-button';
+      var className = fmtClass([this.props.className, 'react-ui', 'react-ui-radio-button']);
 
       return (
         React.DOM.div({className: className}, 
@@ -189,7 +191,7 @@
 
         return (
           React.DOM.li({key: i, className: className, onClick: onClick}, 
-            React.DOM.i({className: 'react-ui-radio-button-disc fa ' + (option.value === this.props.value ? 'fa-dot-circle-o' : 'fa-circle-o')}), 
+            React.DOM.i({className: fmtClass(['react-ui-radio-button-disc', 'fa', (this.props.value == option.value ? 'fa-dot-circle-o' : 'fa-circle-o')])}), 
             React.DOM.span({className: "react-ui-radio-button-text"}, option.text)
           )
         );
@@ -209,8 +211,7 @@
     render: function () {
       var className, errorMessage;
 
-      className = (this.props.className ? this.props.ClassName + ' ' : '') +
-        'react-ui react-ui-text-input';
+      className = fmtClass([this.props.className, 'react-ui', 'react-ui-text-input']);
 
       errorMessage = this.validate();
 
