@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
     <style type="text/css">
-      input[type=checkbox] ~ span {
+      input[type=checkbox] ~ span,
+      input[type=radio] ~ span {
         font-weight: normal;
+      }
+
+      label {
+        cursor: pointer;
       }
 
       .bs-example {
@@ -19,6 +24,7 @@
       }
 
       .bs-example:after {
+        color: #888;
         content: "Example";
         font-weight: bold;
         left: 15px;
@@ -63,7 +69,7 @@
       placeholder="Enter email" helpBlock="e.g. my-name@example.com" /&gt;
     &lt;TextInput type="password" label="Password" placeholder="Password" /&gt;
 
-    &lt;Checkbox&gt;check me out!&lt;/Checkbox&gt;
+    &lt;Checkbox&gt;Check me out!&lt;/Checkbox&gt;
     &lt;Button type="submit"&gt;Submit&lt;/Button&gt;
   &lt;/Form&gt;
         </code></pre>
@@ -114,6 +120,57 @@
   &lt;Button className="btn-link"&gt;
     Link
   &lt;/Button&gt;
+        </code></pre>
+      </div>
+
+    </section>
+
+    <!-- Checkboxes and Radio Buttons -->
+
+    <section class="col-md-9">
+
+      <h2>Checkboxes and radios</h2>
+
+      <p>
+        Checkboxes are for selecting one or several options in a list, while radios
+        are for selecting one option from many.
+      </p>
+
+      <p>
+        A checkbox or radio with the <code>disabled</code> attribute will be styled appropriately.
+        To have the <code>&lt;label&gt;</code> for the checkbox or radio also display
+        a "not-allowed" cursor when the user hovers over the label, add the <code>.disabled</code>
+        class to your <code>.radio</code>, <code>.radio-inline</code>, <code>.checkbox</code>,
+        <code>.checkbox-inline</code>, or <code>&lt;fieldset&gt;</code>.
+      </p>
+
+      <div id="checkboxes-and-radios" class="bs-example">
+      </div>
+
+      <div class="highlight">
+        <pre><code>
+  var {Checkbox, RadioButton} = Bootstrap;
+
+  &lt;div&gt;
+    &lt;Checkbox&gt;
+      Option one is this and that—be sure to include why it's great
+    &lt;/Checkbox&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;Checkbox disabled="disabled"&gt;
+      Option two is disabled
+    &lt;/Checkbox&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;RadioButton name="radioExample"&gt;
+      Option one is this and that—be sure to include why it's great
+    &lt;/RadioButton&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;RadioButton name="radioExample" disabled="disabled"&gt;
+      Option two is disabled
+    &lt;/RadioButton&gt;
+  &lt;/div&gt;
         </code></pre>
       </div>
 

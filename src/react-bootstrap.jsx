@@ -54,7 +54,15 @@
     render: function () {
       return (
         <label>
-          <input type="checkbox" onChange={this.onChange} />&nbsp;
+          <input
+            type="checkbox"
+            id={this.props.id}
+            checked={this.props.checked}
+            className={this.props.className}
+            disabled={this.props.disabled}
+            name={this.props.name}
+            onChange={this.onChange}
+            value={this.props.value} />&nbsp;
           {this.props.label || this.props.children || ''}
         </label>
       );
@@ -163,42 +171,20 @@
   var RadioButton = React.createClass({
 
     render: function () {
-      var className = join([this.props.className, 'react-ui', 'react-ui-radio-button']);
-
       return (
-        <div className={className}>
-          {this.renderOptions()}
-        </div>
+        <label>
+          <input
+            type="radio"
+            id={this.props.id}
+            checked={this.props.checked}
+            className={this.props.className}
+            disabled={this.props.disabled}
+            name={this.props.name}
+            onChange={this.onChange}
+            value={this.props.value} />&nbsp;
+          {this.props.label || this.props.children || ''}
+        </label>
       );
-    },
-
-    onOptionClick: function (value) {
-      this.setProps({value: value});
-
-      if (typeof this.props.onChange === 'function') {
-        setTimeout(function () {
-          this.props.onChange(this.props.value);
-        }.bind(this));
-      }
-    },
-
-    renderOptions: function () {
-      return this.props.options.map(function (option, i) {
-        var className, onClick;
-
-        className = 'react-ui-radio-button-option'
-
-        onClick = function () {
-          this.onOptionClick(option.value);
-        }.bind(this);
-
-        return (
-          <li key={i} className={className} onClick={onClick}>
-            <i className={join(['react-ui-radio-button-disc', 'fa', (this.props.value == option.value ? 'fa-dot-circle-o' : 'fa-circle-o')])} />
-            <span className="react-ui-radio-button-text">{option.text}</span>
-          </li>
-        );
-      }.bind(this));
     }
 
   });
@@ -233,10 +219,10 @@
           <input type={type}
             id={this.state.id}
             className='form-control'
-            onKeyUp={this.props.onKeyUp}
-            onChange={this.onChange}
-            placeholder={this.props.placeholder}
             disabled={this.props.disabled}
+            onChange={this.onChange}
+            onKeyUp={this.props.onKeyUp}
+            placeholder={this.props.placeholder}
             title={this.props.title}
             value={this.props.value} />
           {this.renderHelp()}

@@ -55,7 +55,15 @@
     render: function () {
       return (
         React.DOM.label(null, 
-          React.DOM.input({type: "checkbox", onChange: this.onChange}), " ", 
+          React.DOM.input({
+            type: "checkbox", 
+            id: this.props.id, 
+            checked: this.props.checked, 
+            className: this.props.className, 
+            disabled: this.props.disabled, 
+            name: this.props.name, 
+            onChange: this.onChange, 
+            value: this.props.value}), " ", 
           this.props.label || this.props.children || ''
         )
       );
@@ -164,42 +172,20 @@
   var RadioButton = React.createClass({displayName: 'RadioButton',
 
     render: function () {
-      var className = join([this.props.className, 'react-ui', 'react-ui-radio-button']);
-
       return (
-        React.DOM.div({className: className}, 
-          this.renderOptions()
+        React.DOM.label(null, 
+          React.DOM.input({
+            type: "radio", 
+            id: this.props.id, 
+            checked: this.props.checked, 
+            className: this.props.className, 
+            disabled: this.props.disabled, 
+            name: this.props.name, 
+            onChange: this.onChange, 
+            value: this.props.value}), " ", 
+          this.props.label || this.props.children || ''
         )
       );
-    },
-
-    onOptionClick: function (value) {
-      this.setProps({value: value});
-
-      if (typeof this.props.onChange === 'function') {
-        setTimeout(function () {
-          this.props.onChange(this.props.value);
-        }.bind(this));
-      }
-    },
-
-    renderOptions: function () {
-      return this.props.options.map(function (option, i) {
-        var className, onClick;
-
-        className = 'react-ui-radio-button-option'
-
-        onClick = function () {
-          this.onOptionClick(option.value);
-        }.bind(this);
-
-        return (
-          React.DOM.li({key: i, className: className, onClick: onClick}, 
-            React.DOM.i({className: join(['react-ui-radio-button-disc', 'fa', (this.props.value == option.value ? 'fa-dot-circle-o' : 'fa-circle-o')])}), 
-            React.DOM.span({className: "react-ui-radio-button-text"}, option.text)
-          )
-        );
-      }.bind(this));
     }
 
   });
@@ -234,10 +220,10 @@
           React.DOM.input({type: type, 
             id: this.state.id, 
             className: "form-control", 
-            onKeyUp: this.props.onKeyUp, 
-            onChange: this.onChange, 
-            placeholder: this.props.placeholder, 
             disabled: this.props.disabled, 
+            onChange: this.onChange, 
+            onKeyUp: this.props.onKeyUp, 
+            placeholder: this.props.placeholder, 
             title: this.props.title, 
             value: this.props.value}), 
           this.renderHelp()

@@ -6,6 +6,7 @@
 var Button = Bootstrap.Button,
     Checkbox = Bootstrap.Checkbox,
     Form = Bootstrap.Form,
+    RadioButton = Bootstrap.RadioButton,
     TextInput = Bootstrap.TextInput;
 
 React.renderComponent((
@@ -36,9 +37,30 @@ React.renderComponent((
       ), 
 
       React.DOM.div({className: "form-group"}, 
-        Checkbox(null, "check me out!")
+        Checkbox(null, "Check me out!")
       ), 
 
       Button({type: "submit"}, "Submit")
     )
   ), document.getElementById('basic-form'));
+
+// -----------------------------------------------------------------------------
+// Checkboxes and Radios
+// -----------------------------------------------------------------------------
+
+React.renderComponent((
+    React.DOM.div(null, 
+      React.DOM.div(null, 
+        Checkbox(null, "Option one is this and that—be sure to include why it's great")
+      ), 
+      React.DOM.div(null, 
+        Checkbox({disabled: "disabled"}, "Option two is disabled")
+      ), 
+      React.DOM.div(null, 
+        RadioButton({name: "radioExample"}, "Option one is this and that—be sure to include why it's great")
+      ), 
+      React.DOM.div(null, 
+        RadioButton({name: "radioExample", disabled: "disabled"}, "Option two is disabled")
+      )
+    )
+  ), document.getElementById('checkboxes-and-radios'));
