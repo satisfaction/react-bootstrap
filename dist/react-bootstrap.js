@@ -73,14 +73,22 @@
       props.label = null;
       props.children = null;
 
-      return (
-        React.DOM.div({className: "checkbox"}, 
-          React.DOM.label(null, 
-            Input(Object.assign({}, props)), 
-            this.props.label || this.props.children || ''
-          )
+      var input = (
+        React.DOM.label(null, 
+          Input(Object.assign({}, props)), 
+          this.props.label || this.props.children || ''
         )
       );
+
+      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
+        input = (
+          React.DOM.div({className: props.type}, 
+            input
+          )
+        );
+      }
+
+      return input;
     },
 
     onChange: function (event) {
@@ -194,14 +202,22 @@
       props.label = null;
       props.children = null;
 
-      return (
-        React.DOM.div({className: "radio"}, 
-          React.DOM.label(null, 
-            Input(Object.assign({}, props)), 
-            this.props.label || this.props.children || ''
-          )
+      var input = (
+        React.DOM.label(null, 
+          Input(Object.assign({}, props)), 
+          this.props.label || this.props.children || ''
         )
       );
+
+      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
+        input = (
+          React.DOM.div({className: props.type}, 
+            input
+          )
+        );
+      }
+
+      return input;
     }
 
   });
