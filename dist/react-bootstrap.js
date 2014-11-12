@@ -11,6 +11,18 @@
 
   'use strict';
 
+  if (!Object.assign) {
+    Object.assign = function (target, source) {
+      var key;
+
+      for (key in source) {
+        if (source.hasOwnProperty(key)) target[key] = source[key];
+      }
+
+      return target;
+    };
+  }
+
   var join = function () {
     return arguments[0].join(' ').trim();
   };
@@ -49,22 +61,21 @@
     getInitialState: function () {
       return {
         checked: this.props.checked || false
-      }
+      };
     },
 
     render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = 'checkbox';
+
+      // Remove conflicting properties
+      props.label = null;
+      props.children = null;
+
       return (
         React.DOM.label(null, 
-          React.DOM.input({
-            type: "checkbox", 
-            id: this.props.id, 
-            checked: this.props.checked, 
-            className: this.props.className, 
-            disabled: this.props.disabled, 
-            name: this.props.name, 
-            onChange: this.onChange, 
-            value: this.props.value}), " ", 
-          this.props.label || this.props.children || ''
+          Input(Object.assign({}, props)), " ", this.props.label || this.props.children || ''
         )
       );
     },
@@ -172,22 +183,39 @@
   var RadioButton = React.createClass({displayName: 'RadioButton',
 
     render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = 'radio';
+
+      // Remove conflicting properties
+      props.label = null;
+      props.children = null;
+
       return (
         React.DOM.label(null, 
-          React.DOM.input({
-            type: "radio", 
-            id: this.props.id, 
-            checked: this.props.checked, 
-            className: this.props.className, 
-            disabled: this.props.disabled, 
-            name: this.props.name, 
-            onChange: this.onChange, 
-            value: this.props.value}), " ", 
-          this.props.label || this.props.children || ''
+          Input(Object.assign({}, props)), " ", this.props.label || this.props.children || ''
         )
       );
     }
 
+  });
+
+  // Input: Internal only
+
+  var Input = React.createClass({displayName: 'Input',
+    render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = this.props.type || 'text';
+
+      if (['text', 'email', 'password'].indexOf(props.type) > -1) {
+        props.className = join([this.props.className, 'form-control']);
+      }
+
+      return (
+        React.DOM.input(Object.assign({}, props))
+      );
+    }
   });
 
   var TextInput = React.createClass({displayName: 'TextInput',
@@ -200,32 +228,24 @@
     },
 
     render: function () {
-      var className, errorMessage, type;
 
-      className = this.props.className;
-      type = this.props.type || 'text';
+      var props = Object.assign({}, this.props);
+
+      props.className = '' + this.props.className;
 
       if (this.props.validate) {
         errorMessage = this.validate();
         if (!errorMessage) {
-          className += ' has-success'
+          props.className += ' has-success';
         } else {
-          className += ' has-error';
+          props.className += ' has-error';
         }
       }
 
       return (
-        React.DOM.div({className: className}, 
+        React.DOM.div(null, 
           this.renderLabel(), 
-          React.DOM.input({type: type, 
-            id: this.state.id, 
-            className: "form-control", 
-            disabled: this.props.disabled, 
-            onChange: this.onChange, 
-            onKeyUp: this.props.onKeyUp, 
-            placeholder: this.props.placeholder, 
-            title: this.props.title, 
-            value: this.props.value}), 
+          Input(Object.assign({}, props)), 
           this.renderHelp()
         )
       );

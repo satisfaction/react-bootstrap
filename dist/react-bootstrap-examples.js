@@ -52,14 +52,11 @@ React.renderComponent((
     React.DOM.div(null, 
       React.DOM.div(null, 
         Checkbox(null, "Option one is this and that—be sure to include why it's great")
-      ), 
-      React.DOM.div(null, 
+      ), React.DOM.div(null, 
         Checkbox({disabled: "disabled"}, "Option two is disabled")
-      ), 
-      React.DOM.div(null, 
+      ), React.DOM.div(null, 
         RadioButton({name: "radioExample"}, "Option one is this and that—be sure to include why it's great")
-      ), 
-      React.DOM.div(null, 
+      ), React.DOM.div(null, 
         RadioButton({name: "radioExample", disabled: "disabled"}, "Option two is disabled")
       )
     )

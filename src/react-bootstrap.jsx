@@ -10,6 +10,18 @@
 
   'use strict';
 
+  if (!Object.assign) {
+    Object.assign = function (target, source) {
+      var key;
+
+      for (key in source) {
+        if (source.hasOwnProperty(key)) target[key] = source[key];
+      }
+
+      return target;
+    };
+  }
+
   var join = function () {
     return arguments[0].join(' ').trim();
   };
@@ -48,22 +60,21 @@
     getInitialState: function () {
       return {
         checked: this.props.checked || false
-      }
+      };
     },
 
     render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = 'checkbox';
+
+      // Remove conflicting properties
+      props.label = null;
+      props.children = null;
+
       return (
         <label>
-          <input
-            type="checkbox"
-            id={this.props.id}
-            checked={this.props.checked}
-            className={this.props.className}
-            disabled={this.props.disabled}
-            name={this.props.name}
-            onChange={this.onChange}
-            value={this.props.value} />&nbsp;
-          {this.props.label || this.props.children || ''}
+          <Input {...props} />&nbsp;{this.props.label || this.props.children || ''}
         </label>
       );
     },
@@ -171,22 +182,39 @@
   var RadioButton = React.createClass({
 
     render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = 'radio';
+
+      // Remove conflicting properties
+      props.label = null;
+      props.children = null;
+
       return (
         <label>
-          <input
-            type="radio"
-            id={this.props.id}
-            checked={this.props.checked}
-            className={this.props.className}
-            disabled={this.props.disabled}
-            name={this.props.name}
-            onChange={this.onChange}
-            value={this.props.value} />&nbsp;
-          {this.props.label || this.props.children || ''}
+          <Input {...props} />&nbsp;{this.props.label || this.props.children || ''}
         </label>
       );
     }
 
+  });
+
+  // Input: Internal only
+
+  var Input = React.createClass({
+    render: function () {
+      var props = Object.assign({}, this.props);
+
+      props.type = this.props.type || 'text';
+
+      if (['text', 'email', 'password'].indexOf(props.type) > -1) {
+        props.className = join([this.props.className, 'form-control']);
+      }
+
+      return (
+        <input {...props} />
+      );
+    }
   });
 
   var TextInput = React.createClass({
@@ -199,32 +227,24 @@
     },
 
     render: function () {
-      var className, errorMessage, type;
 
-      className = this.props.className;
-      type = this.props.type || 'text';
+      var props = Object.assign({}, this.props);
+
+      props.className = '' + this.props.className;
 
       if (this.props.validate) {
         errorMessage = this.validate();
         if (!errorMessage) {
-          className += ' has-success'
+          props.className += ' has-success';
         } else {
-          className += ' has-error';
+          props.className += ' has-error';
         }
       }
 
       return (
-        <div className={className}>
+        <div>
           {this.renderLabel()}
-          <input type={type}
-            id={this.state.id}
-            className='form-control'
-            disabled={this.props.disabled}
-            onChange={this.onChange}
-            onKeyUp={this.props.onKeyUp}
-            placeholder={this.props.placeholder}
-            title={this.props.title}
-            value={this.props.value} />
+          <Input {...props} />
           {this.renderHelp()}
         </div>
       );

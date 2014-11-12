@@ -51,14 +51,11 @@ React.renderComponent((
     <div>
       <div>
         <Checkbox>Option one is this and that—be sure to include why it's great</Checkbox>
-      </div>
-      <div>
+      </div><div>
         <Checkbox disabled="disabled">Option two is disabled</Checkbox>
-      </div>
-      <div>
+      </div><div>
         <RadioButton name="radioExample">Option one is this and that—be sure to include why it's great</RadioButton>
-      </div>
-      <div>
+      </div><div>
         <RadioButton name="radioExample" disabled="disabled">Option two is disabled</RadioButton>
       </div>
     </div>
