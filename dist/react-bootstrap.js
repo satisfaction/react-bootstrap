@@ -200,8 +200,6 @@
 
   });
 
-  // Input: Internal only
-
   var Input = React.createClass({displayName: 'Input',
     render: function () {
       var props = Object.assign({}, this.props);
@@ -283,6 +281,7 @@
     Button: Button,
     Checkbox: Checkbox,
     Form: Form,
+    Input: Input,
     RadioButton: RadioButton,
     Select: Select,
     TextInput: TextInput
