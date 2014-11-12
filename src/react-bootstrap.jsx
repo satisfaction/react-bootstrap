@@ -73,9 +73,12 @@
       props.children = null;
 
       return (
-        <label>
-          <Input {...props} />&nbsp;{this.props.label || this.props.children || ''}
-        </label>
+        <div className="checkbox">
+          <label>
+            <Input {...props} />
+            {this.props.label || this.props.children || ''}
+          </label>
+        </div>
       );
     },
 
@@ -191,9 +194,12 @@
       props.children = null;
 
       return (
-        <label>
-          <Input {...props} />&nbsp;{this.props.label || this.props.children || ''}
-        </label>
+        <div className="radio">
+          <label>
+            <Input {...props} />
+            {this.props.label || this.props.children || ''}
+          </label>
+        </div>
       );
     }
 

@@ -74,8 +74,11 @@
       props.children = null;
 
       return (
-        React.DOM.label(null, 
-          Input(Object.assign({}, props)), " ", this.props.label || this.props.children || ''
+        React.DOM.div({className: "checkbox"}, 
+          React.DOM.label(null, 
+            Input(Object.assign({}, props)), 
+            this.props.label || this.props.children || ''
+          )
         )
       );
     },
@@ -192,8 +195,11 @@
       props.children = null;
 
       return (
-        React.DOM.label(null, 
-          Input(Object.assign({}, props)), " ", this.props.label || this.props.children || ''
+        React.DOM.div({className: "radio"}, 
+          React.DOM.label(null, 
+            Input(Object.assign({}, props)), 
+            this.props.label || this.props.children || ''
+          )
         )
       );
     }
