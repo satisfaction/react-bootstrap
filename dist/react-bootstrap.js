@@ -251,6 +251,10 @@
 
       var props = Object.assign({}, this.props);
 
+      if (this.props.className && this.props.className.indexOf('form-group') > -1) {
+        props.className = this.props.className.replace(/\s?form-group\s?/, '');
+      }
+
       props.className = '' + this.props.className;
 
       if (this.props.validate) {
@@ -263,7 +267,7 @@
       }
 
       return (
-        React.DOM.div(null, 
+        React.DOM.div({className: "form-group"}, 
           this.renderLabel(), 
           Input(Object.assign({}, props)), 
           this.renderHelp()

@@ -27,18 +27,9 @@ React.renderComponent((
 
 React.renderComponent((
     <Form>
-      <div className='form-group'>
-        <TextInput type="email" label="Email address" placeholder="Enter email" helpBlock="e.g. my-name@example.com" />
-      </div>
-
-      <div className='form-group'>
-        <TextInput type="password" label="Password" placeholder="Password" />
-      </div>
-
-      <div className='form-group'>
-        <Checkbox>Check me out!</Checkbox>
-      </div>
-
+      <TextInput type="email" label="Email address" placeholder="Enter email" helpBlock="e.g. my-name@example.com" />
+      <TextInput type="password" label="Password" placeholder="Password" />
+      <Checkbox>Check me out!</Checkbox>
       <Button type="submit">Submit</Button>
     </Form>
   ), document.getElementById('basic-form'));
