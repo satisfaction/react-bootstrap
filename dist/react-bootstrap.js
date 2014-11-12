@@ -73,35 +73,25 @@
       props.label = null;
       props.children = null;
 
-      var input = (
-        React.DOM.label(null, 
-          Input(Object.assign({}, props)), 
-          this.props.label || this.props.children || ''
-        )
-      );
-
-      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
-        input = (
+      if (this.props.className && this.props.className.indexOf(props.type + '-inline') !== -1) {
+        props.className = props.className.replace(new RegExp('\s?' + props.type + '-inline\s?', 'g'), '');
+        return (
+          React.DOM.label({className: props.type + '-inline'}, 
+            Input(Object.assign({}, props)), 
+            this.props.label || this.props.children || ''
+          )
+        );
+      } else {
+        return (
           React.DOM.div({className: props.type}, 
-            input
+            React.DOM.label(null, 
+              Input(Object.assign({}, props)), 
+              this.props.label || this.props.children || ''
+            )
           )
         );
       }
-
-      return input;
-    },
-
-    onChange: function (event) {
-      var checkbox = event.target;
-      if (checkbox.checked === true && typeof this.props.onCheck === 'function') {
-        this.props.onCheck(event);
-      }
-
-      if (checkbox.checked === false && typeof this.props.onUncheck === 'function') {
-        this.props.onUncheck(event);
-      }
     }
-
   });
 
   var Form = React.createClass({displayName: 'Form',
@@ -193,6 +183,12 @@
 
   var RadioButton = React.createClass({displayName: 'RadioButton',
 
+    getInitialState: function () {
+      return {
+        checked: this.props.checked || false
+      };
+    },
+
     render: function () {
       var props = Object.assign({}, this.props);
 
@@ -202,24 +198,25 @@
       props.label = null;
       props.children = null;
 
-      var input = (
-        React.DOM.label(null, 
-          Input(Object.assign({}, props)), 
-          this.props.label || this.props.children || ''
-        )
-      );
-
-      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
-        input = (
+      if (this.props.className && this.props.className.indexOf(props.type + '-inline') !== -1) {
+        props.className = props.className.replace(new RegExp('\s?' + props.type + '-inline\s?', 'g'), '');
+        return (
+          React.DOM.label({className: props.type + '-inline'}, 
+            Input(Object.assign({}, props)), 
+            this.props.label || this.props.children || ''
+          )
+        );
+      } else {
+        return (
           React.DOM.div({className: props.type}, 
-            input
+            React.DOM.label(null, 
+              Input(Object.assign({}, props)), 
+              this.props.label || this.props.children || ''
+            )
           )
         );
       }
-
-      return input;
     }
-
   });
 
   var Input = React.createClass({displayName: 'Input',

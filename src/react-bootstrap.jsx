@@ -72,35 +72,25 @@
       props.label = null;
       props.children = null;
 
-      var input = (
-        <label>
-          <Input {...props} />
-          {this.props.label || this.props.children || ''}
-        </label>
-      );
-
-      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
-        input = (
+      if (this.props.className && this.props.className.indexOf(props.type + '-inline') !== -1) {
+        props.className = props.className.replace(new RegExp('\s?' + props.type + '-inline\s?', 'g'), '');
+        return (
+          <label className={props.type + '-inline'}>
+            <Input {...props} />
+            {this.props.label || this.props.children || ''}
+          </label>
+        );
+      } else {
+        return (
           <div className={props.type}>
-            {input}
+            <label>
+              <Input {...props} />
+              {this.props.label || this.props.children || ''}
+            </label>
           </div>
         );
       }
-
-      return input;
-    },
-
-    onChange: function (event) {
-      var checkbox = event.target;
-      if (checkbox.checked === true && typeof this.props.onCheck === 'function') {
-        this.props.onCheck(event);
-      }
-
-      if (checkbox.checked === false && typeof this.props.onUncheck === 'function') {
-        this.props.onUncheck(event);
-      }
     }
-
   });
 
   var Form = React.createClass({
@@ -192,6 +182,12 @@
 
   var RadioButton = React.createClass({
 
+    getInitialState: function () {
+      return {
+        checked: this.props.checked || false
+      };
+    },
+
     render: function () {
       var props = Object.assign({}, this.props);
 
@@ -201,24 +197,25 @@
       props.label = null;
       props.children = null;
 
-      var input = (
-        <label>
-          <Input {...props} />
-          {this.props.label || this.props.children || ''}
-        </label>
-      );
-
-      if (!this.props.className || this.props.className.indexOf(props.type + '-inline') === -1) {
-        input = (
+      if (this.props.className && this.props.className.indexOf(props.type + '-inline') !== -1) {
+        props.className = props.className.replace(new RegExp('\s?' + props.type + '-inline\s?', 'g'), '');
+        return (
+          <label className={props.type + '-inline'}>
+            <Input {...props} />
+            {this.props.label || this.props.children || ''}
+          </label>
+        );
+      } else {
+        return (
           <div className={props.type}>
-            {input}
+            <label>
+              <Input {...props} />
+              {this.props.label || this.props.children || ''}
+            </label>
           </div>
         );
       }
-
-      return input;
     }
-
   });
 
   var Input = React.createClass({
