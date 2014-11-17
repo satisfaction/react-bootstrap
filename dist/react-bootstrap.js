@@ -30,28 +30,12 @@
   var Button = React.createClass({displayName: 'Button',
 
     render: function () {
-      var className, type;
+      var props = Object.assign({}, this.props);
 
-      className = join(['btn', this.props.className || 'btn-default']);
-      type = this.props.type || 'button';
+      props.className = join(['btn', this.props.className || 'btn-default']);
+      props.type = 'button';
 
-      return (
-        React.DOM.button({type: type, 
-          id: this.props.id, 
-          className: className, 
-          title: this.props.title, 
-          onClick: this.onClick, 
-          disabled: this.props.disabled}, 
-          this.props.children
-        )
-      );
-    },
-
-    onClick: function (event) {
-      event.preventDefault();
-      if (typeof this.props.onClick === 'function') {
-        this.props.onClick(event);
-      }
+      return (React.DOM.button(Object.assign({}, props)));
     }
 
   });
