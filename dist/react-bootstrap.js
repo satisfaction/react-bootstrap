@@ -27,6 +27,12 @@
     return arguments[0].join(' ').trim();
   };
 
+  var buildHelpBlock = function (text) {
+    if (text) {
+      return (React.DOM.p({className: "help-block"}, text));
+    }
+  }
+
   var Button = React.createClass({displayName: 'Button',
 
     render: function () {
@@ -70,7 +76,8 @@
           React.DOM.div({className: props.type}, 
             React.DOM.label(null, 
               Input(Object.assign({}, props)), 
-              this.props.label || this.props.children || ''
+              this.props.label || this.props.children || '', 
+              buildHelpBlock(props.help)
             )
           )
         );
@@ -195,7 +202,8 @@
           React.DOM.div({className: props.type}, 
             React.DOM.label(null, 
               Input(Object.assign({}, props)), 
-              this.props.label || this.props.children || ''
+              this.props.label || this.props.children || '', 
+              buildHelpBlock(props.help)
             )
           )
         );

@@ -26,6 +26,12 @@
     return arguments[0].join(' ').trim();
   };
 
+  var buildHelpBlock = function (text) {
+    if (text) {
+      return (<p className="help-block">{text}</p>);
+    }
+  }
+
   var Button = React.createClass({
 
     render: function () {
@@ -70,6 +76,7 @@
             <label>
               <Input {...props} />
               {this.props.label || this.props.children || ''}
+              {buildHelpBlock(props.help)}
             </label>
           </div>
         );
@@ -195,6 +202,7 @@
             <label>
               <Input {...props} />
               {this.props.label || this.props.children || ''}
+              {buildHelpBlock(props.help)}
             </label>
           </div>
         );
