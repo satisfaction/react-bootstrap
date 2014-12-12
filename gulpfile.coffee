@@ -4,7 +4,6 @@ connect    = require 'gulp-connect'
 gulp       = require 'gulp'
 rename     = require 'gulp-rename'
 sass       = require 'gulp-sass'
-svgSprite  = require 'gulp-svg-sprites'
 uglify     = require 'gulp-uglify'
 util       = require 'gulp-util'
 

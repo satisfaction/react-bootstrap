@@ -10,7 +10,7 @@
 
   'use strict'
 
-  {button, div, form, input, label, li, p} = React.DOM
+  {button, div, form, input, label, li, p, span} = React.DOM
 
   ###
   # Utility functions
@@ -48,32 +48,33 @@
   class ClassName
 
     constructor: (@words = []) ->
+      @words = @words.split(' ') unless isArray @words
 
-    add: (word) ->
+    add: (word) =>
       return unless word
       @words = @words.concat word.split(' ')
       return
 
-    has: (criteria) ->
+    has: (criteria) =>
       exists = false
 
       return exists unless criteria
 
       # if the criteria is a regular expression
-      if isRegExp.test criteria
-        exist = true for w in @words where criteria.test word
+      if isRegExp criteria
+        exists = true for word in @words when criteria.test word
 
       # if the criteria is a string (word)
       else exists = @words.indexOf(criteria) > -1
 
       exists
 
-    remove: (word) ->
+    remove: (word) =>
       return unless word
       @words.splice(@words.indexOf word) if @words.indexOf(word) > -1
       return
 
-    toString: -> @words.join(' ').trim()
+    toString: => @words.join(' ').trim()
 
   buildHelpBlock = (text) ->
     return null unless text
@@ -82,12 +83,12 @@
   Button = React.createClass
 
     render: ->
-      props = assign {}, @props, type: button
+      props = assign {}, @props, {type: 'button'}
 
       className = new ClassName [@props.className, 'btn']
 
       # default to `btn-default` if no style is set
-      unless className.has /btn-(danger|default|info|primary|success|warning)/
+      unless className.has /btn-(danger|default|info|link|primary|success|warning)/
         className.add 'btn-default'
 
       props.className = className.toString()
