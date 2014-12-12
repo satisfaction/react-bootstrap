@@ -129,7 +129,6 @@ var __slice = [].slice,
       });
       className = new ClassName([this.props.className, 'btn']);
       if (!className.has(/btn-(danger|default|info|link|primary|success|warning)/)) {
-        debugger;
         className.add('btn-default');
       }
       props.className = className.toString();

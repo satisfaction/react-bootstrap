@@ -4,7 +4,7 @@
  * Button Options
  * -----------------------------------------------------------------------------
  */
-var Button, Checkbox, Form, RadioButton, TextInput, div;
+var Button, Checkbox, Form, RadioButton, TextInput, btnStyle, div;
 
 Button = Bootstrap.Button;
 
@@ -18,19 +18,31 @@ TextInput = Bootstrap.TextInput;
 
 div = React.DOM.div;
 
+btnStyle = {
+  marginRight: '5px;'
+};
+
 React.renderComponent(div(null, [
-  Button(null, 'Default'), ' ', Button({
-    className: 'btn-primary'
-  }, 'Primary'), ' ', Button({
-    className: 'btn-success'
-  }, 'Success'), ' ', Button({
-    className: 'btn-info'
-  }, 'Info'), ' ', Button({
-    className: 'btn-warning'
-  }, 'Warning'), ' ', Button({
-    className: 'btn-danger'
-  }, 'Danger'), ' ', Button({
-    className: 'btn-link'
+  Button({
+    style: btnStyle
+  }, 'Default'), Button({
+    className: 'btn-primary',
+    style: btnStyle
+  }, 'Primary'), Button({
+    className: 'btn-success',
+    style: btnStyle
+  }, 'Success'), Button({
+    className: 'btn-info',
+    style: btnStyle
+  }, 'Info'), Button({
+    className: 'btn-warning',
+    style: btnStyle
+  }, 'Warning'), Button({
+    className: 'btn-danger',
+    style: btnStyle
+  }, 'Danger'), Button({
+    className: 'btn-link',
+    style: btnStyle
   }, 'Link')
 ]), document.getElementById('button-options'));
 
