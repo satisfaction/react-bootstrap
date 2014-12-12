@@ -196,10 +196,6 @@ var __slice = [].slice,
         ]), ul(null, this.renderOptions())
       ]);
     },
-
-    /*
-     * Get's the selected option text
-     */
     getLabel: function() {
       var i, len, option;
       if (!this.state.value) {

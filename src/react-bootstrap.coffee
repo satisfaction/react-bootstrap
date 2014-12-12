@@ -155,9 +155,7 @@
         (ul null, @renderOptions())
       ])
 
-    ###
     # Get's the selected option text
-    ###
     getLabel: ->
       return '' unless @state.value
 
