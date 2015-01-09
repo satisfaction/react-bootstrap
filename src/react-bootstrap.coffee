@@ -112,20 +112,20 @@
         # remove inline class from the input properties
         className.remove "#{props.type}-inline"
 
-        (label {className: "#{props.type}-inline"}, [
-          (input props)
+        (label {className: "#{props.type}-inline"},
+          (input props),
           (@props.label or @props.children or '')
-        ])
+        )
 
       # unless inline-checkbox
       else
 
-        (div {className: props.type}, [
-          (label null, [
-            (input props)
+        (div {className: props.type},
+          (label null,
+            (input props),
             (@props.label or @props.children or '')
-          ])
-        ])
+          )
+        )
 
   Form = React.createClass
 
@@ -146,14 +146,14 @@
 
       className.add('react-ui-is-collapsed') if @state.collapsed
 
-      (div {className: className.toString()}, [
-        (div {onClick: @onClick}, [
-          (label null, @getLabel())
-          (span())
+      (div {className: className.toString()},
+        (div {onClick: @onClick},
+          (label null, @getLabel()),
+          (span()),
           (Input {type: 'text', onKeyPress: @onKeyPress})
-        ])
+        ),
         (ul null, @renderOptions())
-      ])
+      )
 
     # Get's the selected option text
     getLabel: ->
@@ -209,21 +209,20 @@
         # remove inline class from the input properties
         className.remove "#{props.type}-inline"
 
-        (label className: "#{props.type}-inline", [
-          (Input props)
-          (@props.label or @props.children or '')
-        ])
+        (label className: "#{props.type}-inline",
+          (Input props),
+          (@props.label or @props.children or ''))
 
       # non inline style
       else
 
-        (div {className: props.type}, [
-          (label null, [
-            (input props)
+        (div {className: props.type},
+          (label null,
+            (input props),
             (@props.label or @props.children or '')
-          ])
+          ),
           (buildHelpBlock props.help)
-        ])
+        )
 
   Input = React.createClass
 
@@ -265,11 +264,11 @@
 
       props.className = className.toString()
 
-      (div {className: 'form-group'}, [
-        (@renderLabel())
-        (Input props)
+      (div {className: 'form-group'},
+        (@renderLabel()),
+        (Input props),
         (@renderHelp())
-      ])
+      )
 
     onChange: (event) ->
       @setState value: @refs[@_inputRef].value

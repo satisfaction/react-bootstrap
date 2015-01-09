@@ -153,11 +153,11 @@ var __slice = [].slice,
         className.remove("" + props.type + "-inline");
         return label({
           className: "" + props.type + "-inline"
-        }, [input(props), this.props.label || this.props.children || '']);
+        }, input(props), this.props.label || this.props.children || '');
       } else {
         return div({
           className: props.type
-        }, [label(null, [input(props), this.props.label || this.props.children || ''])]);
+        }, label(null, input(props), this.props.label || this.props.children || ''));
       }
     }
   });
@@ -185,16 +185,12 @@ var __slice = [].slice,
       }
       return div({
         className: className.toString()
-      }, [
-        div({
-          onClick: this.onClick
-        }, [
-          label(null, this.getLabel()), span(), Input({
-            type: 'text',
-            onKeyPress: this.onKeyPress
-          })
-        ]), ul(null, this.renderOptions())
-      ]);
+      }, div({
+        onClick: this.onClick
+      }, label(null, this.getLabel()), span(), Input({
+        type: 'text',
+        onKeyPress: this.onKeyPress
+      })), ul(null, this.renderOptions()));
     },
     getLabel: function() {
       var i, len, option;
@@ -270,11 +266,11 @@ var __slice = [].slice,
         className.remove("" + props.type + "-inline");
         return label({
           className: "" + props.type + "-inline"
-        }, [Input(props), this.props.label || this.props.children || '']);
+        }, Input(props), this.props.label || this.props.children || '');
       } else {
         return div({
           className: props.type
-        }, [label(null, [input(props), this.props.label || this.props.children || '']), buildHelpBlock(props.help)]);
+        }, label(null, input(props), this.props.label || this.props.children || ''), buildHelpBlock(props.help));
       }
     }
   });
@@ -314,7 +310,7 @@ var __slice = [].slice,
       props.className = className.toString();
       return div({
         className: 'form-group'
-      }, [this.renderLabel(), Input(props), this.renderHelp()]);
+      }, this.renderLabel(), Input(props), this.renderHelp());
     },
     onChange: function(event) {
       this.setState({
