@@ -131,6 +131,38 @@
 
     render: -> (form {id: @props.id, className: @props.className, role: 'form'}, @props.children)
 
+  Input = React.createClass
+
+    render: ->
+      props = assign {type: 'text'}, @props
+
+      # add `form-control` class for the following input types:
+      inputTypes = [
+        'text'
+        'email'
+        'password'
+      ]
+      className = new ClassName props.className
+      className.add('form-control') if inputTypes.indexOf(props.type) > -1
+
+      props.className = className.toString()
+
+      (input props)
+
+  Modal = React.createClass
+
+    propTypes:
+      id: React.PropTypes.string.isRequired
+      className: React.PropTypes.string
+
+    render: ->
+      className = new ClassName [@props.className, 'modal', 'fade']
+      (div {className: className.toString(), id: @props.id, tabindex: -1, role: 'dialog'},
+        (div {className: "modal-dialog #{if @props.small then 'modal-sm' else ''}"},
+          (div {className: 'modal-content', children: @props.children})
+        )
+      )
+
   Select = React.createClass
 
     getInitialState: ->
@@ -224,24 +256,6 @@
           (buildHelpBlock props.help)
         )
 
-  Input = React.createClass
-
-    render: ->
-      props = assign {type: 'text'}, @props
-
-      # add `form-control` class for the following input types:
-      inputTypes = [
-        'text'
-        'email'
-        'password'
-      ]
-      className = new ClassName props.className
-      className.add('form-control') if inputTypes.indexOf(props.type) > -1
-
-      props.className = className.toString()
-
-      (input props)
-
   TextInput = React.createClass
 
     getInitialState: ->
@@ -291,6 +305,7 @@
   Checkbox    : Checkbox
   Form        : Form
   Input       : Input
+  Modal       : Modal
   RadioButton : RadioButton
   Select      : Select
   TextInput   : TextInput

@@ -11,7 +11,7 @@ var __slice = [].slice,
   }
 })(this, function(React) {
   'use strict';
-  var Button, Checkbox, ClassName, Form, Input, RadioButton, Select, TextInput, assign, buildHelpBlock, button, div, form, input, isArray, isFunction, isRegExp, label, li, p, span, _ref;
+  var Button, Checkbox, ClassName, Form, Input, Modal, RadioButton, Select, TextInput, assign, buildHelpBlock, button, div, form, input, isArray, isFunction, isRegExp, label, li, p, span, _ref;
   _ref = React.DOM, button = _ref.button, div = _ref.div, form = _ref.form, input = _ref.input, label = _ref.label, li = _ref.li, p = _ref.p, span = _ref.span;
 
   /*
@@ -170,6 +170,42 @@ var __slice = [].slice,
       }, this.props.children);
     }
   });
+  Input = React.createClass({
+    render: function() {
+      var className, inputTypes, props;
+      props = assign({
+        type: 'text'
+      }, this.props);
+      inputTypes = ['text', 'email', 'password'];
+      className = new ClassName(props.className);
+      if (inputTypes.indexOf(props.type) > -1) {
+        className.add('form-control');
+      }
+      props.className = className.toString();
+      return input(props);
+    }
+  });
+  Modal = React.createClass({
+    propTypes: {
+      id: React.PropTypes.string.isRequired,
+      className: React.PropTypes.string
+    },
+    render: function() {
+      var className;
+      className = new ClassName([this.props.className, 'modal', 'fade']);
+      return div({
+        className: className.toString(),
+        id: this.props.id,
+        tabindex: -1,
+        role: 'dialog'
+      }, div({
+        className: "modal-dialog " + (this.props.small ? 'modal-sm' : '')
+      }, div({
+        className: 'modal-content',
+        children: this.props.children
+      })));
+    }
+  });
   Select = React.createClass({
     getInitialState: function() {
       return {
@@ -274,21 +310,6 @@ var __slice = [].slice,
       }
     }
   });
-  Input = React.createClass({
-    render: function() {
-      var className, inputTypes, props;
-      props = assign({
-        type: 'text'
-      }, this.props);
-      inputTypes = ['text', 'email', 'password'];
-      className = new ClassName(props.className);
-      if (inputTypes.indexOf(props.type) > -1) {
-        className.add('form-control');
-      }
-      props.className = className.toString();
-      return input(props);
-    }
-  });
   TextInput = React.createClass({
     getInitialState: function() {
       return {
@@ -349,6 +370,7 @@ var __slice = [].slice,
     Checkbox: Checkbox,
     Form: Form,
     Input: Input,
+    Modal: Modal,
     RadioButton: RadioButton,
     Select: Select,
     TextInput: TextInput
