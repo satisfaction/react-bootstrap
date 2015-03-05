@@ -12,7 +12,7 @@ TextInput   = Bootstrap.TextInput
 
 {div} = React.DOM
 
-React.renderComponent \
+React.render \
   (div null, [
     (Button null, 'Default')
     (Button {className: 'btn-primary'}, 'Primary')
@@ -30,7 +30,7 @@ React.renderComponent \
 # -----------------------------------------------------------------------------
 ###
 
-React.renderComponent \
+React.render \
   (Form null, [
     (TextInput {
       type: 'email'
@@ -54,7 +54,7 @@ React.renderComponent \
 # -----------------------------------------------------------------------------
 ###
 
-React.renderComponent \
+React.render \
   (div null, [
     (div null, (Checkbox null, 'Option one is this and that-be sure to include why it\'s great'))
     (div null,
